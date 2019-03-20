@@ -25,8 +25,11 @@ const DownloadLink = styled.a`
 `;
 
 const Download = ({ props }) => {
-  const markdown = props.data.allMarkdownRemark.edges;
-  const json = props.data.allFeaturesJson.edges;
+  if (!props) {
+    return <div>There is no data</div>;
+  }
+  //   const markdown = props.data.allMarkdownRemark.edges;
+  //   const json = props.data.allFeaturesJson.edges;
   const github = props.data.github;
   const releaseAssets = github.repository.releases.edges[0].node.releaseAssets.edges;
   const releaseNotes =
