@@ -34,7 +34,7 @@ const Home = props => {
   const github = props.data.github;
   const releaseAssets = github.repository.releases.edges[0].node.releaseAssets.edges;
   const releaseNotes =
-    github.repository.releases.edges[0].node.releaseAssets.edges[0].node.release.description;
+    github.repository.releases.edges[0].node.releaseAssets.edges[0].node.release.description || '';
 
   return (
     <div>
