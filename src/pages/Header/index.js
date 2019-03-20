@@ -1,9 +1,27 @@
 import React from 'react';
-// import { graphql, withPrefix, Link } from 'gatsby';
 import styled from 'styled-components';
+import Link from 'components/Link';
+import { colors } from 'theme';
 
-// import MarkdownIt from 'markdown-it';
+const HeaderConatiner = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 10rem;
+`;
 
-const Header = () => <div>Header</div>;
+const HeaderSection = styled.div`
+  display: felx;
+  padding: 1rem;
+`;
+
+const Header = () => (
+  <HeaderConatiner>
+    <HeaderSection>rUN Node logo</HeaderSection>
+    <HeaderSection>
+      <Link>Github</Link>
+    </HeaderSection>
+  </HeaderConatiner>
+);
 
 export default Header;

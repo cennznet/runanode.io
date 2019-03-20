@@ -1,5 +1,18 @@
 const path = require('path');
 
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    module: {
+      rules: [
+        {
+          test: /\.svg$/,
+          use: ['svg-react-loader'],
+        },
+      ],
+    },
+  });
+};
+
 // Create pages from markdown files
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -57,8 +70,8 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
-        `,
-      ).then((result) => {
+        `
+      ).then(result => {
         result.data.services.edges.forEach(({ node }) => {
           const component = path.resolve('src/templates/service.js');
           createPage({
@@ -90,7 +103,7 @@ exports.createPages = ({ graphql, actions }) => {
           });
         });
         resolve();
-      }),
+      })
     );
   });
 };

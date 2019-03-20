@@ -36,6 +36,14 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /images/,
+        },
+      },
+    },
+    {
       resolve: 'gatsby-source-graphql',
       options: {
         typeName: 'GitHub',
@@ -80,6 +88,7 @@ module.exports = {
           pages: 'src/pages',
           theme: 'src/theme',
           components: 'src/components',
+          images: 'src/images',
         },
         extensions: ['js'],
       },
