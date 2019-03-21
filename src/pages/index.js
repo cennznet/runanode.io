@@ -1,61 +1,43 @@
 import React from 'react';
-import { graphql, withPrefix, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import Helmet from 'react-helmet';
-import SEO from '../components/SEO';
-import Layout from '../layouts/index';
-import Call from '../components/Call';
+import SEO from 'components/SEO';
+import theme, { colors } from 'theme';
+import Header from 'pages/Header';
+import Footer from 'pages/Footer';
+import Download from 'pages/Download';
 
-import MarkdownIt from 'markdown-it';
-
-const md = new MarkdownIt();
-
-const Test = styled.div.attrs({
-  className: '',
-})`
-  width: 60rem;
-
-  img {
-    width: 20rem;
-  }
+const HomePage = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: ${colors.N0};
 `;
 
-const DownloadContainer = styled.div`
-  width: 30rem;
-`;
-
-const DownloadLink = styled.a`
-  display: block;
+// padding attrs in ContentContainer is temporay layout
+const Content = styled.div`
+  padding: 0 15rem;
+  background: ${theme.pageGradient};
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.24);
+  height: 90vh;
+  width: 100vw;
 `;
 
 const Home = props => {
-  const markdown = props.data.allMarkdownRemark.edges;
-  const json = props.data.allFeaturesJson.edges;
-  const github = props.data.github;
-  const releaseAssets = github.repository.releases.edges[0].node.releaseAssets.edges;
-  const releaseNotes =
-    github.repository.releases.edges[0].node.releaseAssets.edges[0].node.release.description || '';
-
   return (
-    <div>
-      <SEO title="Home" />
-      <Helmet>
-        <meta name="description" content="Cennz Node landing page" />
-      </Helmet>
-      <Test>
-        <div dangerouslySetInnerHTML={{ __html: md.render(releaseNotes) }} />
-      </Test>
-      <DownloadContainer>
-        {releaseAssets.map(asset => {
-          const { id, name, url, description } = asset.node;
-          return (
-            <DownloadLink key={id} href={url} target="_blank">
-              {name}
-            </DownloadLink>
-          );
-        })}
-      </DownloadContainer>
-    </div>
+    <HomePage>
+      <Content>
+        <SEO title="Home" />
+        <Helmet>
+          <meta name="description" content="Cennz Node landing page" />
+        </Helmet>
+        <Header />
+        <Download props={props} />
+      </Content>
+      <Footer />
+    </HomePage>
   );
 };
 
@@ -84,32 +66,6 @@ export const query = graphql`
               }
             }
           }
-        }
-      }
-    }
-    allMarkdownRemark(
-      filter: { fileAbsolutePath: { regex: "/services/" } }
-      sort: { fields: [frontmatter___date], order: DESC }
-    ) {
-      edges {
-        node {
-          id
-          frontmatter {
-            path
-            title
-            date(formatString: "DD MMMM YYYY")
-          }
-          excerpt
-        }
-      }
-    }
-    allFeaturesJson {
-      edges {
-        node {
-          id
-          title
-          description
-          image
         }
       }
     }
