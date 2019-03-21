@@ -1,3 +1,6 @@
 .cache
 node_modules
 public
+
+# OSX
+.DS_Store
