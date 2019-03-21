@@ -73,30 +73,3 @@ export const query = graphql`
 `;
 
 export default Home;
-
-// allMarkdownRemark(
-//   filter: { fileAbsolutePath: { regex: "/services/" } }
-//   sort: { fields: [frontmatter___date], order: DESC }
-// ) {
-//   edges {
-//     node {
-//       id
-//       frontmatter {
-//         path
-//         title
-//         date(formatString: "DD MMMM YYYY")
-//       }
-//       excerpt
-//     }
-//   }
-// }
-// allFeaturesJson {
-//   edges {
-//     node {
-//       id
-//       title
-//       description
-//       image
-//     }
-//   }
-// }
