@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Container, Row, Col } from 'styled-bootstrap-grid';
 import Link from 'components/Link';
 import { colors } from 'theme';
 
@@ -16,12 +17,14 @@ const HeaderSection = styled.div`
 `;
 
 const Header = () => (
-  <HeaderConatiner>
-    <HeaderSection>rUN Node logo</HeaderSection>
-    <HeaderSection>
-      <Link>Github</Link>
-    </HeaderSection>
-  </HeaderConatiner>
+  <Container>
+    <HeaderConatiner>
+      <HeaderSection>rUN Node logo</HeaderSection>
+      <HeaderSection>
+        <Link>Github</Link>
+      </HeaderSection>
+    </HeaderConatiner>
+  </Container>
 );
 
 export default Header;
