@@ -14,27 +14,28 @@ const HomePage = styled.div`
   display: flex;
   flex-direction: column;
   color: ${colors.N0};
+  font-family: 'Open Sans';
 `;
 
-// padding attrs in ContentContainer is temporay layout
 const Content = styled.div`
-  padding: 0 15rem;
   background: ${theme.pageGradient};
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.24);
-  height: 90vh;
+  height: 100vh;
   width: 100vw;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Home = props => {
   return (
     <HomePage>
+      <SEO title="Home" />
+      <Helmet>
+        <meta name="description" content="Cennz Node landing page" />
+      </Helmet>
       <Content>
-        <SEO title="Home" />
-        <Helmet>
-          <meta name="description" content="Cennz Node landing page" />
-        </Helmet>
         <Header />
-        <Download props={props} />
+        <Download data={props && props.data} />
       </Content>
       <Footer />
     </HomePage>
@@ -49,6 +50,7 @@ export const query = graphql`
           edges {
             node {
               name
+              publishedAt
               releaseAssets(last: 10) {
                 edges {
                   node {

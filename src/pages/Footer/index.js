@@ -6,7 +6,7 @@ import CentralityLogo from '-!svg-react-loader!images/logo.svg';
 
 // padding attrs in FooterContainer is temporary layout
 const FooterContainer = styled.div`
-  height: 10vh;
+  height: 8vh;
   background-color: ${colors.primary};
   display: flex;
   align-items: center;
