@@ -1,12 +1,12 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
-import favicon from '../../static/favicon.png';
+// import favicon from '../../static/favicon.png';
 
 const SEO = props => (
   <StaticQuery
     query={detailsQuery}
-    render={(data) => {
+    render={data => {
       const title = props.title || data.site.siteMetadata.title;
       return (
         <Helmet
@@ -15,9 +15,7 @@ const SEO = props => (
           }}
           title={title}
           titleTemplate={`%s - ${data.site.siteMetadata.title}`}
-          link={[
-            { rel: 'shortcut icon', type: 'image/png', href: `${favicon}` },
-          ]}
+          // link={[{ rel: 'shortcut icon', type: 'image/png', href: `${favicon}` }]}
         />
       );
     }}
