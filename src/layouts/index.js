@@ -1,9 +1,12 @@
 import React from 'react';
-import Helmet from 'react-helmet';
 import styled from 'styled-components';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import '../scss/style.scss';
+import AppThemeProvider from 'components/AppThemeProvider';
+import Header from 'components/Header';
+import Footer from 'components/Footer';
+import theme from 'theme';
+import globalStyles from 'src/globalStyles';
+
+import 'scss/style.scss';
 
 const Main = styled.div`
   min-height: calc(100vh - 80px);
@@ -11,16 +14,15 @@ const Main = styled.div`
 
 const Layout = props => {
   return (
-    <React.Fragment>
-      <Helmet>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-      </Helmet>
-      <Main>
-        <Header />
-        {props.children}
-      </Main>
-      <Footer />
-    </React.Fragment>
+    <AppThemeProvider {...{ theme, globalStyles }}>
+      <React.Fragment>
+        <Main>
+          <Header />
+          {props.children}
+        </Main>
+        <Footer />
+      </React.Fragment>
+    </AppThemeProvider>
   );
 };
 
