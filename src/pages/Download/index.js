@@ -36,11 +36,42 @@ const Description = styled.div`
 const VersionInfo = styled.div`
   font-size: 14px;
   height: 1.8rem;
-  min-width: 22.5rem;
+  min-width: 20rem;
   background: ${theme.listitemHighlightGradient};
   line-height: 1.8rem;
   padding: 0 0.5rem;
   border-radius: 11rem;
+  text-align: center;
+`;
+
+const DownloadCards = styled.div`
+  display: flex;
+  padding: 0 10rem;
+  margin-top: 4rem;
+  justify-content: space-around;
+`;
+
+const DownloadCardWrapper = styled.div`
+  height: 34rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 23rem;
+  border-radius: 1.2rem;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.24);
+  background-color: ${colors.V900};
+
+  &:hover {
+    background: ${theme.listitemHighlightGradient};
+  }
+`;
+
+const DownloadCard = styled.div`
+  height: 99%;
+  width: 99%;
+  border-radius: 1.2rem;
+  background-color: ${colors.V900};
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.24);
 `;
 
 const Test = styled.div.attrs({
@@ -80,9 +111,11 @@ const Download = ({ data: { github } }) => {
         </Description>
         <VersionInfo>{`Current version ${releaseVersion} Release date: ${latestReleaseDate}`}</VersionInfo>
       </TitleContainer>
-      <div>
-        <LinesBg />
-      </div>
+      <DownloadCards>
+        <DownloadCardWrapper>
+          <DownloadCard>Test</DownloadCard>
+        </DownloadCardWrapper>
+      </DownloadCards>
     </DownloadContainer>
   );
 };

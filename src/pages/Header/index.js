@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAppleAlt } from '@fortawesome/free-solid-svg-icons';
 import Link from 'components/Link';
 import { colors } from 'theme';
 
@@ -21,6 +23,7 @@ const Header = () => (
   <HeaderConatiner>
     <HeaderSection>rUN Node logo</HeaderSection>
     <HeaderSection>
+      <FontAwesomeIcon icon={faAppleAlt} />
       <Link>Github</Link>
     </HeaderSection>
   </HeaderConatiner>

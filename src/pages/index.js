@@ -20,7 +20,7 @@ const HomePage = styled.div`
 const Content = styled.div`
   background: ${theme.pageGradient};
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.24);
-  height: 100vh;
+  height: 92vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
