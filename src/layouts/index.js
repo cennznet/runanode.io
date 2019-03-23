@@ -1,7 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import AppThemeProvider from 'components/AppThemeProvider';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import theme from 'theme';
+import globalStyles from 'src/globalStyles';
+
 import 'scss/style.scss';
 
 const Main = styled.div`
@@ -10,13 +14,15 @@ const Main = styled.div`
 
 const Layout = props => {
   return (
-    <React.Fragment>
-      <Main>
-        <Header />
-        {props.children}
-      </Main>
-      <Footer />
-    </React.Fragment>
+    <AppThemeProvider {...{ theme, globalStyles }}>
+      <React.Fragment>
+        <Main>
+          <Header />
+          {props.children}
+        </Main>
+        <Footer />
+      </React.Fragment>
+    </AppThemeProvider>
   );
 };
 

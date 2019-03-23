@@ -1,6 +1,9 @@
 @import '~reset-css/sass/_reset.scss';
 html {
-  body: {
-    font-size: 14px;
-  }
+  body: {}
 }
+
+// NOTICE:
+// You rarely have to write styles here!
+// If you wanna config global styles, please checkout src/globalStyles.js
+// If you wanna config 3rd-party component styles, please customise in src/components
