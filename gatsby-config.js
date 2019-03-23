@@ -88,6 +88,7 @@ module.exports = {
           pages: 'src/pages',
           theme: 'src/theme',
           components: 'src/components',
+          scss: 'src/scss',
           images: 'src/images',
         },
         extensions: ['js'],
