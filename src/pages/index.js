@@ -6,7 +6,9 @@ import { Container, Row, Col } from 'styled-bootstrap-grid';
 import SEO from 'components/SEO';
 import theme, { colors } from 'theme';
 import Layout from '../layouts/index';
-import Download from 'pages/Download';
+import Download from 'components/Download';
+import Footer from 'components/Footer';
+import Header from 'components/Header';
 
 // const HomePage = styled.div`
 //   width: 100vw;
@@ -37,7 +39,6 @@ const Home = props => {
         />
       </Helmet>
       <Container>
-        <Header />
         <Download data={props && props.data} />
       </Container>
     </Layout>
