@@ -5,21 +5,15 @@ import { colors } from 'theme';
 import Link from 'components/Link';
 import CentralityLogo from '-!svg-react-loader!images/logo.svg';
 
-// padding attrs in FooterContainer is temporary layout
 const FooterContainer = styled.div`
   min-height: 5rem;
   background-color: ${colors.primary};
-`;
-
-const FooterWrapper = styled.div`
-  /* display: flex;
+  display: flex;
   align-items: center;
-  justify-content: space-between; */
 `;
 
 const FooterSection = styled.div`
   display: flex;
-  /* padding: 1rem; */
 `;
 
 const LogoText = styled.div`
@@ -35,7 +29,6 @@ const LinkText = styled.div`
 const Footer = () => (
   <FooterContainer>
     <Container>
-      {/* <FooterWrapper> */}
       <Row smJustifyContent="between">
         <Col col xs="12" sm="4">
           <FooterSection>
@@ -57,7 +50,6 @@ const Footer = () => (
           </FooterSection>
         </Col>
       </Row>
-      {/* </FooterWrapper> */}
     </Container>
   </FooterContainer>
 );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { graphql } from 'gatsby';
 import MarkdownIt from 'markdown-it';
 import styled from 'styled-components';
@@ -101,6 +101,27 @@ const Download = ({ data: { github } }) => {
   const releaseNotes =
     github.repository.releases.edges[0].node.releaseAssets.edges[0].node.release.description || '';
 
+  const [appleCheckSum, setAppleCheckSum] = useState(null);
+  const [macDownloadLink, setMacDownloadLink] = useState(null);
+
+  useEffect(() => {
+    if (releaseAssets) {
+      releaseAssets.forEach(releaseItem => {
+        const { name } = (releaseItem && releaseItem.node) || '';
+        const { url } = (releaseItem && releaseItem.node) || null;
+        const { downloadUrl } = (releaseItem && releaseItem.node) || null;
+
+        if (name.includes('mac.pkg') && url) {
+          setMacDownloadLink(url);
+        }
+
+        if (name.includes('mac.dmg.sha256') && url) {
+          fetch(url).then(response => console.log('mac.dmg.sha256', response));
+        }
+      });
+    }
+  });
+
   return (
     <DownloadContainer>
       <TitleContainer>
@@ -114,6 +135,7 @@ const Download = ({ data: { github } }) => {
       <DownloadCards>
         <DownloadCardWrapper>
           <DownloadCard>Test</DownloadCard>
+          {macDownloadLink && <a href={macDownloadLink}> for Mac</a>}
         </DownloadCardWrapper>
       </DownloadCards>
     </DownloadContainer>
