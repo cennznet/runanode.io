@@ -9,7 +9,7 @@ console.log('process.env.GA_TRACKING_ID', process.env.GA_TRACKING_ID);
 
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Serif',
+    title: 'a node wallet can stake CENNZ tokens',
     description: 'my theme',
     contact: {
       phone: 'XXX XXX XXX',

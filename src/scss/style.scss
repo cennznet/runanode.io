@@ -1,1 +1,6 @@
-html {}
+@import '~reset-css/sass/_reset.scss';
+html {
+  body: {
+    font-size: 14px;
+  }
+}
