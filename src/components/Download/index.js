@@ -38,7 +38,6 @@ const Description = styled.div`
 `;
 
 const VersionInfo = styled.div`
-  font-size: 14px;
   height: 1.8rem;
   min-width: 20rem;
   background: ${theme.listitemHighlightGradient};
