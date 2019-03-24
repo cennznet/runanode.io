@@ -77,7 +77,7 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/src/images`,
+        path: `${__dirname}/static/images`,
         name: 'images',
       },
     },
@@ -90,7 +90,7 @@ module.exports = {
           theme: 'src/theme',
           components: 'src/components',
           scss: 'src/scss',
-          images: 'src/images',
+          images: 'static/images',
         },
         extensions: ['js'],
       },

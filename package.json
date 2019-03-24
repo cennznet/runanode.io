@@ -11,6 +11,10 @@
     "serve": "gatsby serve"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.17",
+    "@fortawesome/free-solid-svg-icons": "^5.8.1",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "babel-plugin-styled-components": "^1.10.0",
     "core-js": "2",
     "dotenv": "^6.2.0",
     "gatsby": "2.2.8",
@@ -29,6 +33,8 @@
     "react": "16.8.5",
     "react-dom": "16.8.5",
     "react-helmet": "^5.2.0",
+    "react-svg-inline": "^2.1.1",
+    "react-tooltip": "^3.10.0",
     "reactstrap": "^7.1.0",
     "reset-css": "^4.0.1",
     "styled-bootstrap-grid": "^3.0.2",

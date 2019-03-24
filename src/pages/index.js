@@ -6,7 +6,9 @@ import { Container, Row, Col } from 'styled-bootstrap-grid';
 import SEO from 'components/SEO';
 import theme, { colors } from 'theme';
 import Layout from '../layouts/index';
-import Download from 'pages/Download';
+import Download from 'components/Download';
+import Footer from 'components/Footer';
+import Header from 'components/Header';
 
 // const HomePage = styled.div`
 //   width: 100vw;
@@ -18,11 +20,12 @@ import Download from 'pages/Download';
 
 // // padding attrs in ContentContainer is temporay layout
 // const Content = styled.div`
-//   padding: 0 15rem;
 //   background: ${theme.pageGradient};
 //   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.24);
-//   height: 90vh;
+//   height: 92vh;
 //   width: 100vw;
+//   display: flex;
+//   flex-direction: column;
 // `;
 
 const Home = props => {
@@ -36,7 +39,7 @@ const Home = props => {
         />
       </Helmet>
       <Container>
-        <Download props={props} />
+        <Download data={props && props.data} />
       </Container>
     </Layout>
   );
@@ -50,6 +53,7 @@ export const query = graphql`
           edges {
             node {
               name
+              publishedAt
               releaseAssets(last: 10) {
                 edges {
                   node {
