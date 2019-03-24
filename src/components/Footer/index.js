@@ -9,6 +9,11 @@ const FooterContainer = styled.div`
   min-height: 5rem;
   background-color: ${colors.primary};
   display: flex;
+  overflow: hidden;
+`;
+
+const FooterWrapper = styled.div`
+  /* display: flex;
   align-items: center;
 `;
 
