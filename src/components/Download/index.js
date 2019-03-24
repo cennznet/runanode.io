@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { graphql } from 'gatsby';
 import MarkdownIt from 'markdown-it';
 import styled from 'styled-components';
 import theme, { colors } from 'theme';
 import LinesBg from '-!svg-react-loader!images/linesBg.svg';
+import LinuxLogo from '-!svg-react-loader!images/linux.svg';
+import AppleLogo from '-!svg-react-loader!images/apple.svg';
+import WindowsLogo from '-!svg-react-loader!images/windows.svg';
+
+import DownloadCards from './DownloadCards';
 
 const md = new MarkdownIt();
 
@@ -44,82 +48,69 @@ const VersionInfo = styled.div`
   text-align: center;
 `;
 
-const DownloadCards = styled.div`
-  display: flex;
-  padding: 0 10rem;
-  margin-top: 4rem;
-  justify-content: space-around;
-`;
-
-const DownloadCardWrapper = styled.div`
-  height: 34rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 23rem;
-  border-radius: 1.2rem;
-  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.24);
-  background-color: ${colors.V900};
-
-  &:hover {
-    background: ${theme.listitemHighlightGradient};
-  }
-`;
-
-const DownloadCard = styled.div`
-  height: 99%;
-  width: 99%;
-  border-radius: 1.2rem;
-  background-color: ${colors.V900};
-  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.24);
-`;
-
-const Test = styled.div.attrs({
-  className: '',
-})`
-  width: 60rem;
-
-  img {
-    width: 20rem;
-  }
-`;
-
-const DownloadLink = styled.a`
-  display: block;
-`;
-
 const Download = ({ data: { github } }) => {
   if (!github) {
     return <div>There is no data</div>;
   }
   //   const markdown = props.data.allMarkdownRemark.edges;
   //   const json = props.data.allFeaturesJson.edges;
-  console.log(github);
+
   const { name: releaseVersion, publishedAt } = github.repository.releases.edges[0].node;
   const latestReleaseDate = publishedAt && new Date(publishedAt).toDateString();
   const releaseAssets = github.repository.releases.edges[0].node.releaseAssets.edges;
   const releaseNotes =
     github.repository.releases.edges[0].node.releaseAssets.edges[0].node.release.description || '';
 
-  const [appleCheckSum, setAppleCheckSum] = useState(null);
-  const [macDownloadLink, setMacDownloadLink] = useState(null);
+  const [downloadData, setDownloadData] = useState(null);
 
   useEffect(() => {
+    var macDownloadLink = null;
+    var appleCheckSum = null;
+    var linuxDownloadLink = null;
+    var linuxCheckSum = null;
+
     if (releaseAssets) {
       releaseAssets.forEach(releaseItem => {
         const { name } = (releaseItem && releaseItem.node) || '';
         const { url } = (releaseItem && releaseItem.node) || null;
         const { downloadUrl } = (releaseItem && releaseItem.node) || null;
 
-        if (name.includes('mac.pkg') && url) {
-          setMacDownloadLink(url);
+        if (name.endsWith('mac.pkg') && url) {
+          console.log('mac.pkg -url', url);
+          macDownloadLink = url;
         }
 
-        if (name.includes('mac.dmg.sha256') && url) {
-          fetch(url).then(response => console.log('mac.dmg.sha256', response));
+        if (name.endsWith('mac.pkg.sha256') && url) {
+          console.log('mac.pkg.sha256', url);
+          fetch(url).then(response => console.log(response));
+        }
+
+        if (name.endsWith('linux-amd64.deb') && url) {
+          console.log('linux-amd64.deb', url);
+          linuxDownloadLink = url;
+        }
+
+        if (name.endsWith('linux-amd64.deb.sha256') && url) {
+          console.log('linux-amd64.deb.sha256', url);
+          fetch(url).then(response => console.log(response));
         }
       });
     }
+
+    const tempChecksum = 'a8aa2b83ba5a0e6ad09e95905e439c659c18f8d351c57dc4d94fd63ea2e12cb4';
+
+    const resortedDownloadData = [
+      { device: 'macOS 64 bit', url: macDownloadLink, checksum: tempChecksum, LogoCmp: AppleLogo },
+      {
+        device: 'Linux 64 bit',
+        url: linuxDownloadLink,
+        checksum: tempChecksum,
+        LogoCmp: LinuxLogo,
+      },
+      { device: 'Windows', desc: 'Coming soon', LogoCmp: WindowsLogo },
+    ];
+
+    setDownloadData(resortedDownloadData);
   });
 
   return (
@@ -132,27 +123,9 @@ const Download = ({ data: { github } }) => {
         </Description>
         <VersionInfo>{`Current version ${releaseVersion} Release date: ${latestReleaseDate}`}</VersionInfo>
       </TitleContainer>
-      <DownloadCards>
-        <DownloadCardWrapper>
-          <DownloadCard>Test</DownloadCard>
-          {macDownloadLink && <a href={macDownloadLink}> for Mac</a>}
-        </DownloadCardWrapper>
-      </DownloadCards>
+      <DownloadCards downloadData={downloadData} releaseVersion={releaseVersion} />
     </DownloadContainer>
   );
 };
 
 export default Download;
-
-{
-  /* <div>
-{releaseAssets.map(asset => {
-  const { id, name, url, description } = asset.node;
-  return (
-    <DownloadLink key={id} href={url} target="_blank">
-      {name}
-    </DownloadLink>
-  );
-})}
-</div> */
-}

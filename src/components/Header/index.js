@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import SVGInline from 'react-svg-inline';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAppleAlt } from '@fortawesome/free-solid-svg-icons';
 import { Container, Row, Col } from 'styled-bootstrap-grid';

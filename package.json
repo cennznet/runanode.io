@@ -33,6 +33,8 @@
     "react": "16.8.5",
     "react-dom": "16.8.5",
     "react-helmet": "^5.2.0",
+    "react-svg-inline": "^2.1.1",
+    "react-tooltip": "^3.10.0",
     "reactstrap": "^7.1.0",
     "reset-css": "^4.0.1",
     "styled-bootstrap-grid": "^3.0.2",
