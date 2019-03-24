@@ -9,6 +9,7 @@ import CentralityLogo from '-!svg-react-loader!images/logo.svg';
 const FooterContainer = styled.div`
   min-height: 5rem;
   background-color: ${colors.primary};
+  overflow: hidden;
 `;
 
 const FooterWrapper = styled.div`
