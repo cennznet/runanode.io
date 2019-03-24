@@ -116,7 +116,7 @@ const Download = ({ data: { github } }) => {
   return (
     <DownloadContainer>
       <TitleContainer>
-        <Title>LET'S RUN A NODE!</Title>
+        <Title>LET&#39;S RUN A NODE!</Title>
         <Description>
           Download node application to your computer from below list. If you prefer to use CLI,
           please download here.
