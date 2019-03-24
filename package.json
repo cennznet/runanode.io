@@ -11,6 +11,7 @@
     "serve": "gatsby serve"
   },
   "dependencies": {
+    "core-js": "2",
     "dotenv": "^6.2.0",
     "gatsby": "2.2.8",
     "gatsby-plugin-alias-imports": "^1.0.5",

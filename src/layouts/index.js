@@ -9,6 +9,7 @@ import globalStyles from 'src/globalStyles';
 import 'scss/style.scss';
 
 const Main = styled.div`
+  overflow: hidden;
   min-height: calc(100vh - 80px);
 `;
 
