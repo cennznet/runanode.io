@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://runanode.io/sitemap.xml
+Host: https://runanode.io
