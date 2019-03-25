@@ -8,8 +8,20 @@ import { Container, media } from 'styled-bootstrap-grid';
 
 const DownloadCardList = styled.div`
   display: flex;
-  margin: 2rem 0;
+  margin: 1rem 0;
   justify-content: space-around;
+  flex-wrap: wrap;
+
+  ${media.md`
+    align-items: flex-start;
+    justify-content: space-between;
+  `}
+
+  ${media.lg`
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: space-between;
+  `}
 `;
 
 const DownloadCardWrapper = styled.div`
@@ -17,8 +29,7 @@ const DownloadCardWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 23rem;
-  border-radius: 1.2rem;
+  border-radius: 20px;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.24);
   background-color: ${colors.V900};
   margin: 0 1rem;
@@ -26,6 +37,17 @@ const DownloadCardWrapper = styled.div`
   &:hover {
     background: ${theme.listitemHighlightGradient};
   }
+
+  ${media.xs`
+    width: 90%;
+    align-items: center;
+    margin-bottom: 1.6rem;
+  `}
+
+  ${media.md`
+     width: 45%;
+     margin-bottom: 1.6rem;
+  `}
 `;
 
 const DownloadCard = styled.div`
@@ -57,21 +79,29 @@ const Version = styled.div`
 `;
 
 const DownloadLink = styled.a`
-  display: block;
-  height: 2.5rem;
-  width: 8rem;
-  text-align: center;
-  line-height: 2.5rem;
-  background-color: ${colors.primary};
-  color: ${colors.N0};
-  font-weight: 500;
-  font-size: 16px;
-  text-decoration: none;
-  border-radius: 3px;
+  color: transparent;
+  pointer-events: none;
+  cursor: default;
 
-  &:hover {
-    background: ${theme.listitemHighlightGradient};
-  }
+  ${media.lg`
+    height: 2.5rem;
+    width: 8rem;
+    color: ${colors.N0};
+    display: block;
+    text-align: center;
+    line-height: 2.5rem;
+    background-color: ${colors.primary};
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 3px;
+    cursor: pointer;
+    pointer-events: default;
+  
+    &:hover {
+      background: ${theme.listitemHighlightGradient};
+    }
+  `}
 `;
 
 const CheckSumContainer = styled.div`

@@ -13,7 +13,7 @@ const FooterContainer = styled.div`
   align-items: center;
 
   ${media.xs`
-     padding: 0.5rem 0;
+     padding: 0.5rem 1rem;
   `}
 `;
 
