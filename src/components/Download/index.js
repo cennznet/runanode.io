@@ -10,36 +10,75 @@ import DownloadCards from './DownloadCards';
 
 const md = new MarkdownIt();
 
-const TitleContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+const Wrapper = styled(Container)`
+  padding: 0;
 `;
+
+const TitleContainer = styled.div``;
 
 const Title = styled.div`
   font-size: 32px;
   font-weight: bold;
   letter-spacing: 5px;
   line-height: 43px;
+  text-align: center;
 `;
 
 const Description = styled.div`
-  width: 40%;
   font-size: 16px;
   line-height: 24px;
-  margin: 1rem;
+  margin: 0 auto;
+  padding: 1rem 0;
+  text-align: center;
+
+  ${media.xs`
+  width: 70%;
+  `}
+
+  ${media.md`
+     width: 60%;
+  `}
+
+  ${media.lg`
+    width: 40%;
+  `} 
 `;
 
 const VersionInfo = styled.div`
-  margin: 1rem;
   height: 1.8rem;
-  min-width: 20rem;
+  width: 24rem;
   background: ${theme.listitemHighlightGradient};
   line-height: 1.8rem;
   padding: 0 0.5rem;
   border-radius: 11rem;
   text-align: center;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+
+  ${media.xs`
+    height: 4rem;
+    width: 16rem;
+    flex-direction: column;
+  `}
 `;
+
+const DesktopOnly = styled.div`
+  padding: 1rem;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+
+  ${media.md`
+    color: ${colors.N0};
+  `}
+
+  ${media.lg`
+    color: transparent;
+  `}
+`;
+
+const VersionText = styled.div``;
 
 const Download = ({ data: { github } }) => {
   if (!github) {
@@ -107,17 +146,21 @@ const Download = ({ data: { github } }) => {
   }, []);
 
   return (
-    <Container>
+    <Wrapper>
       <TitleContainer>
         <Title>LET&#39;S RUN A NODE!</Title>
         <Description>
           Download node application to your computer from below list. If you prefer to use CLI,
           please download here.
         </Description>
-        <VersionInfo>{`Current version ${releaseVersion} Release date: ${latestReleaseDate}`}</VersionInfo>
+        <VersionInfo>
+          <VersionText>{`Current version ${releaseVersion}`}</VersionText>
+          <VersionText>{`Release date: ${latestReleaseDate}`}</VersionText>
+        </VersionInfo>
+        <DesktopOnly>rUN Node is for desktop only</DesktopOnly>
       </TitleContainer>
       <DownloadCards downloadData={downloadData} releaseVersion={releaseVersion} />
-    </Container>
+    </Wrapper>
   );
 };
 

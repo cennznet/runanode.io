@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Hint from 'components/Hint';
 import Clipboard from 'components/Clipboard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Container, media } from 'styled-bootstrap-grid';
 
 const DownloadCardList = styled.div`
   display: flex;
@@ -33,6 +34,7 @@ const DownloadCard = styled.div`
   border-radius: 1.2rem;
   background-color: ${colors.V900};
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.24);
+  justify-content: center;
 
   display: flex;
   flex-direction: column;

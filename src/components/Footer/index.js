@@ -11,6 +11,10 @@ const FooterContainer = styled.div`
   display: flex;
   overflow: hidden;
   align-items: center;
+
+  ${media.xs`
+     padding: 0.5rem 0;
+  `}
 `;
 
 const FooterSection = styled.div`
