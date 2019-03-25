@@ -3,6 +3,7 @@ import theme, { colors } from 'theme';
 import styled from 'styled-components';
 import Hint from 'components/Hint';
 import Clipboard from 'components/Clipboard';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const DownloadCardList = styled.div`
   display: flex;
@@ -94,12 +95,12 @@ const DownloadCards = ({ downloadData, releaseVersion }) => (
   <DownloadCardList>
     {downloadData &&
       downloadData.map(data => {
-        const { device, url, checksum, LogoCmp, desc } = data;
+        const { device, url, checksum, logo, desc } = data;
         return (
           <DownloadCardWrapper>
             <DownloadCard>
               <LogoContainer>
-                <LogoCmp />
+                <FontAwesomeIcon icon={logo} size="5x" />
               </LogoContainer>
               <Device>{device}</Device>
               {desc && <div>{desc}</div>}
@@ -112,7 +113,7 @@ const DownloadCards = ({ downloadData, releaseVersion }) => (
               {checksum && (
                 <CheckSumContainer>
                   <CheckSumTitle>
-                    Sha256 CheckSum
+                    Sha256 checksum
                     <Hint tooltip={{ place: 'bottom', styles: { minWidth: '15rem' } }}>
                       <p>Sha256 checksum</p>
                     </Hint>

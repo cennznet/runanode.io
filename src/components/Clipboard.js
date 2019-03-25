@@ -21,9 +21,9 @@ const Text = styled.textarea`
   box-shadow: 0;
   resize: none;
   font-size: 14px;
-  line-height: 1.2rem;
+  line-height: 1.8rem;
   font-size: 16px;
-  min-height: 4rem;
+  min-height: 5rem;
   width: 100%;
   text-align: center;
   color: ${colors.textMuted};
