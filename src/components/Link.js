@@ -5,6 +5,7 @@ import { colors } from 'theme';
 const Link = styled.a.attrs({
   target: '_blank',
 })`
+  width: 100%;
   display: block;
   cursor: pointer;
   text-decoration: none;

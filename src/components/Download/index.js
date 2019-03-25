@@ -4,16 +4,11 @@ import styled from 'styled-components';
 import theme, { colors } from 'theme';
 import LinesBg from '-!svg-react-loader!images/linesBg.svg';
 import { faApple, faLinux, faWindows } from '@fortawesome/free-brands-svg-icons';
+import { Container, media } from 'styled-bootstrap-grid';
 
 import DownloadCards from './DownloadCards';
 
 const md = new MarkdownIt();
-
-const DownloadContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-`;
 
 const TitleContainer = styled.div`
   display: flex;
@@ -29,13 +24,14 @@ const Title = styled.div`
 `;
 
 const Description = styled.div`
-  width: 30%;
+  width: 40%;
   font-size: 16px;
   line-height: 24px;
   margin: 1rem;
 `;
 
 const VersionInfo = styled.div`
+  margin: 1rem;
   height: 1.8rem;
   min-width: 20rem;
   background: ${theme.listitemHighlightGradient};
@@ -111,7 +107,7 @@ const Download = ({ data: { github } }) => {
   }, []);
 
   return (
-    <DownloadContainer>
+    <Container>
       <TitleContainer>
         <Title>LET&#39;S RUN A NODE!</Title>
         <Description>
@@ -121,7 +117,7 @@ const Download = ({ data: { github } }) => {
         <VersionInfo>{`Current version ${releaseVersion} Release date: ${latestReleaseDate}`}</VersionInfo>
       </TitleContainer>
       <DownloadCards downloadData={downloadData} releaseVersion={releaseVersion} />
-    </DownloadContainer>
+    </Container>
   );
 };
 
