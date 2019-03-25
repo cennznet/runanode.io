@@ -4,25 +4,7 @@ import styled from 'styled-components';
 import Hint from 'components/Hint';
 import Clipboard from 'components/Clipboard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Container, media } from 'styled-bootstrap-grid';
-
-const DownloadCardList = styled.div`
-  display: flex;
-  margin: 1rem 0;
-  justify-content: space-around;
-  flex-wrap: wrap;
-
-  ${media.md`
-    align-items: flex-start;
-    justify-content: space-between;
-  `}
-
-  ${media.lg`
-    flex-wrap: nowrap;
-    align-items: flex-start;
-    justify-content: space-between;
-  `}
-`;
+import { Row, media } from 'styled-bootstrap-grid';
 
 const DownloadCardWrapper = styled.div`
   height: 34rem;
@@ -32,7 +14,6 @@ const DownloadCardWrapper = styled.div`
   border-radius: 20px;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.24);
   background-color: ${colors.V900};
-  margin: 0 1rem;
 
   &:hover {
     background: ${theme.listitemHighlightGradient};
@@ -40,13 +21,16 @@ const DownloadCardWrapper = styled.div`
 
   ${media.xs`
     width: 90%;
-    align-items: center;
-    margin-bottom: 1.6rem;
+    margin: 1.6rem 0;
   `}
 
   ${media.md`
      width: 45%;
      margin-bottom: 1.6rem;
+  `}
+
+  ${media.lg`
+    width: 30%;
   `}
 `;
 
@@ -56,6 +40,7 @@ const DownloadCard = styled.div`
   border-radius: 1.2rem;
   background-color: ${colors.V900};
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.24);
+
   justify-content: center;
 
   display: flex;
@@ -124,7 +109,7 @@ const ClipboardContainer = styled.div`
 `;
 
 const DownloadCards = ({ downloadData, releaseVersion }) => (
-  <DownloadCardList>
+  <Row justifyContent="between">
     {downloadData &&
       downloadData.map(data => {
         const { device, url, checksum, logo, desc } = data;
@@ -159,7 +144,7 @@ const DownloadCards = ({ downloadData, releaseVersion }) => (
           </DownloadCardWrapper>
         );
       })}
-  </DownloadCardList>
+  </Row>
 );
 
 export default DownloadCards;

@@ -10,10 +10,6 @@ import DownloadCards from './DownloadCards';
 
 const md = new MarkdownIt();
 
-const Wrapper = styled(Container)`
-  padding: 0;
-`;
-
 const TitleContainer = styled.div``;
 
 const Title = styled.div`
@@ -146,7 +142,7 @@ const Download = ({ data: { github } }) => {
   }, []);
 
   return (
-    <Wrapper>
+    <div>
       <TitleContainer>
         <Title>LET&#39;S RUN A NODE!</Title>
         <Description>
@@ -160,7 +156,7 @@ const Download = ({ data: { github } }) => {
         <DesktopOnly>rUN Node is for desktop only</DesktopOnly>
       </TitleContainer>
       <DownloadCards downloadData={downloadData} releaseVersion={releaseVersion} />
-    </Wrapper>
+    </div>
   );
 };
 

@@ -1,30 +1,26 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import Helmet from 'react-helmet';
-import { Container, Row, Col } from 'styled-bootstrap-grid';
-import { GridThemeProvider } from 'styled-bootstrap-grid';
+import { Container } from 'styled-bootstrap-grid';
 import Download from 'components/Download';
 import SEO from 'components/SEO';
 import Layout from '../layouts/index';
-import gridTheme from '../gridTheme';
 
 const Home = props => {
   return (
-    <GridThemeProvider gridTheme={gridTheme}>
-      <Layout>
-        <SEO title="rUN" />
-        <Helmet>
-          <meta
-            name="description"
-            content="A highly secure wallet to manage your assets, check your balance, store or transfer tokens.
+    <Layout>
+      <SEO title="rUN" />
+      <Helmet>
+        <meta
+          name="description"
+          content="A highly secure wallet to manage your assets, check your balance, store or transfer tokens.
             You can also stake CENNZ tokens to participant in the network to ensure that it thrives"
-          />
-        </Helmet>
-        <Container>
-          <Download data={props && props.data} />
-        </Container>
-      </Layout>
-    </GridThemeProvider>
+        />
+      </Helmet>
+      <Container>
+        <Download data={props && props.data} />
+      </Container>
+    </Layout>
   );
 };
 
