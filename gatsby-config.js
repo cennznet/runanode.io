@@ -5,16 +5,13 @@ require('dotenv').config({
 });
 
 console.log('process.env.NODE_ENV', process.env.NODE_ENV);
-console.log('process.env.GA_TRACKING_ID', process.env.GA_TRACKING_ID);
 
 module.exports = {
   siteMetadata: {
-    title: 'a node wallet can stake CENNZ tokens',
-    description: 'my theme',
-    contact: {
-      phone: 'XXX XXX XXX',
-      email: 'zerostaticthemes@gmail.com',
-    },
+    title: 'a node wallet that can stake CENNZ tokens',
+    description:
+      'A highly secure wallet to manage your assets, check your balance, store or transfer tokens. You can also stake CENNZ tokens to participant in the network to ensure that it thrives',
+    siteUrl: 'https://runanode.io',
     menuLinks: [
       {
         name: 'Services',
@@ -60,6 +57,7 @@ module.exports = {
     'gatsby-transformer-remark',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
+    'gatsby-plugin-sitemap',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -100,6 +98,14 @@ module.exports = {
       options: {
         trackingId: process.env.GA_TRACKING_ID,
         cookieDomain: 'runanode.io',
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://runanode.io',
+        sitemap: 'https://runanode.io/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }],
       },
     },
   ],
