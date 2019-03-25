@@ -3,9 +3,7 @@ import MarkdownIt from 'markdown-it';
 import styled from 'styled-components';
 import theme, { colors } from 'theme';
 import LinesBg from '-!svg-react-loader!images/linesBg.svg';
-import LinuxLogo from '-!svg-react-loader!images/linux.svg';
-import AppleLogo from '-!svg-react-loader!images/apple.svg';
-import WindowsLogo from '-!svg-react-loader!images/windows.svg';
+import { faApple, faLinux, faWindows } from '@fortawesome/free-brands-svg-icons';
 
 import DownloadCards from './DownloadCards';
 
@@ -99,18 +97,18 @@ const Download = ({ data: { github } }) => {
     const tempChecksum = 'a8aa2b83ba5a0e6ad09e95905e439c659c18f8d351c57dc4d94fd63ea2e12cb4';
 
     const resortedDownloadData = [
-      { device: 'macOS 64 bit', url: macDownloadLink, checksum: tempChecksum, LogoCmp: AppleLogo },
+      { device: 'macOS 64 bit', url: macDownloadLink, checksum: tempChecksum, logo: faApple },
       {
         device: 'Linux 64 bit',
         url: linuxDownloadLink,
         checksum: tempChecksum,
-        LogoCmp: LinuxLogo,
+        logo: faLinux,
       },
-      { device: 'Windows', desc: 'Coming soon', LogoCmp: WindowsLogo },
+      { device: 'Windows', desc: 'Coming soon', logo: faWindows },
     ];
 
     setDownloadData(resortedDownloadData);
-  });
+  }, []);
 
   return (
     <DownloadContainer>
