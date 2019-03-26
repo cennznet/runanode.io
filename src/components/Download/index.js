@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import theme, { colors } from 'theme';
 import LinesBg from '-!svg-react-loader!images/linesBg.svg';
 import { faApple, faLinux, faWindows } from '@fortawesome/free-brands-svg-icons';
-import { Container, media } from 'styled-bootstrap-grid';
+import { Container, Row, Col, media } from 'styled-bootstrap-grid';
 
 import DownloadCards from './DownloadCards';
 
@@ -26,18 +26,6 @@ const Description = styled.div`
   margin: 0 auto;
   padding: 1rem 0;
   text-align: center;
-
-  ${media.xs`
-  width: 70%;
-  `}
-
-  ${media.md`
-     width: 60%;
-  `}
-
-  ${media.lg`
-    width: 40%;
-  `} 
 `;
 
 const VersionInfo = styled.div`
@@ -76,6 +64,8 @@ const DesktopOnly = styled.div`
 
 const VersionText = styled.div``;
 
+const Http = new XMLHttpRequest();
+
 const Download = ({ data: { github } }) => {
   if (!github) {
     return <div>There is no data</div>;
@@ -104,35 +94,45 @@ const Download = ({ data: { github } }) => {
         const { downloadUrl } = (releaseItem && releaseItem.node) || null;
 
         if (name.endsWith('mac.pkg') && url) {
-          console.log('mac.pkg -url', url);
           macDownloadLink = url;
         }
 
         if (name.endsWith('mac.pkg.sha256') && url) {
-          console.log('mac.pkg.sha256', url);
-          fetch(url).then(response => console.log(response));
+          Http.open('GET', url);
+          Http.send();
+          Http.onreadystatechange = e => {
+            console.log(Http.responseText);
+            const response = Http.responseText;
+            appleCheckSum = response && response.substring(response.indexOf('=') + 1);
+          };
         }
 
         if (name.endsWith('linux-amd64.deb') && url) {
-          console.log('linux-amd64.deb', url);
           linuxDownloadLink = url;
         }
 
         if (name.endsWith('linux-amd64.deb.sha256') && url) {
-          console.log('linux-amd64.deb.sha256', url);
-          fetch(url).then(response => console.log(response));
+          Http.open('GET', url);
+          Http.send();
+          Http.onreadystatechange = e => {
+            const response = Http.responseText;
+            linuxCheckSum = response && response.substring(response.indexOf('=') + 1);
+          };
         }
       });
     }
 
-    const tempChecksum = 'a8aa2b83ba5a0e6ad09e95905e439c659c18f8d351c57dc4d94fd63ea2e12cb4';
+    const tempAppleChecksum =
+      appleCheckSum || '4659e0278e6f1c9fa0740e02b73ee739da1c5cb2dfbe0aca6def1a32cd3cf334';
+    const tempLinuxChecksum =
+      linuxCheckSum || '92d2446ce6e38b2753b805001a2ee343e2326e68673e7010b0f13a1eae250682';
 
     const resortedDownloadData = [
-      { device: 'macOS 64 bit', url: macDownloadLink, checksum: tempChecksum, logo: faApple },
+      { device: 'macOS 64 bit', url: macDownloadLink, checksum: tempAppleChecksum, logo: faApple },
       {
         device: 'Linux 64 bit',
         url: linuxDownloadLink,
-        checksum: tempChecksum,
+        checksum: tempLinuxChecksum,
         logo: faLinux,
       },
       { device: 'Windows', desc: 'Coming soon', logo: faWindows },
@@ -142,21 +142,23 @@ const Download = ({ data: { github } }) => {
   }, []);
 
   return (
-    <div>
-      <TitleContainer>
-        <Title>LET&#39;S RUN A NODE!</Title>
-        <Description>
-          Download node application to your computer from below list. If you prefer to use CLI,
-          please download here.
-        </Description>
-        <VersionInfo>
-          <VersionText>{`Current version ${releaseVersion}`}</VersionText>
-          <VersionText>{`Release date: ${latestReleaseDate}`}</VersionText>
-        </VersionInfo>
-        <DesktopOnly>rUN Node is for desktop only</DesktopOnly>
-      </TitleContainer>
+    <React.Fragment>
+      <Row>
+        <Col col xs={10} md={6} mdOffset={3}>
+          <Title>LET&#39;S RUN A NODE!</Title>
+          <Description>
+            Download node application to your computer from below list. If you prefer to use CLI,
+            please download here.
+          </Description>
+          <VersionInfo>
+            <VersionText>{`Current version ${releaseVersion}`}</VersionText>
+            <VersionText>{`Release date: ${latestReleaseDate}`}</VersionText>
+          </VersionInfo>
+          <DesktopOnly>rUN Node is for desktop only</DesktopOnly>
+        </Col>
+      </Row>
       <DownloadCards downloadData={downloadData} releaseVersion={releaseVersion} />
-    </div>
+    </React.Fragment>
   );
 };
 

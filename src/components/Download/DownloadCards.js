@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Hint from 'components/Hint';
 import Clipboard from 'components/Clipboard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Row, media } from 'styled-bootstrap-grid';
+import { Row, Col, media } from 'styled-bootstrap-grid';
 
 const DownloadCardWrapper = styled.div`
   height: 34rem;
@@ -14,23 +14,25 @@ const DownloadCardWrapper = styled.div`
   border-radius: 20px;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.24);
   background-color: ${colors.V900};
+  min-width: 20rem;
+  max-width: 100%;
 
   &:hover {
     background: ${theme.listitemHighlightGradient};
   }
 
   ${media.xs`
-    width: 90%;
+    // width: 90%;
     margin: 1.6rem 0;
   `}
 
   ${media.md`
-     width: 45%;
+    //  width: 45%;
      margin-bottom: 1.6rem;
   `}
 
   ${media.lg`
-    width: 30%;
+    // width: 30%;
   `}
 `;
 
@@ -109,39 +111,41 @@ const ClipboardContainer = styled.div`
 `;
 
 const DownloadCards = ({ downloadData, releaseVersion }) => (
-  <Row justifyContent="between">
+  <Row justifyContent="center" smJustifyContent="center" mdJustifyContent="between">
     {downloadData &&
       downloadData.map(data => {
         const { device, url, checksum, logo, desc } = data;
         return (
-          <DownloadCardWrapper key={device}>
-            <DownloadCard>
-              <LogoContainer>
-                <FontAwesomeIcon icon={logo} size="5x" />
-              </LogoContainer>
-              <Device>{device}</Device>
-              {desc && <div>{desc}</div>}
-              {url && releaseVersion && <Version>Ver. {releaseVersion}</Version>}
-              {url && (
-                <DownloadLink href={url} target="_blank">
-                  Download
-                </DownloadLink>
-              )}
-              {checksum && (
-                <CheckSumContainer>
-                  <CheckSumTitle>
-                    Sha256 CheckSum
-                    <Hint tooltip={{ place: 'bottom', styles: { minWidth: '15rem' } }}>
-                      <p>Sha256 checksum</p>
-                    </Hint>
-                  </CheckSumTitle>
-                  <ClipboardContainer>
-                    <Clipboard>{checksum}</Clipboard>
-                  </ClipboardContainer>
-                </CheckSumContainer>
-              )}
-            </DownloadCard>
-          </DownloadCardWrapper>
+          <Col col xs={12} sm={12} md={5} lg={3} key={device}>
+            <DownloadCardWrapper key={device}>
+              <DownloadCard>
+                <LogoContainer>
+                  <FontAwesomeIcon icon={logo} size="5x" />
+                </LogoContainer>
+                <Device>{device}</Device>
+                {desc && <div>{desc}</div>}
+                {url && releaseVersion && <Version>Ver. {releaseVersion}</Version>}
+                {url && (
+                  <DownloadLink href={url} target="_blank">
+                    Download
+                  </DownloadLink>
+                )}
+                {checksum && (
+                  <CheckSumContainer>
+                    <CheckSumTitle>
+                      Sha256 CheckSum
+                      <Hint tooltip={{ place: 'bottom', styles: { minWidth: '15rem' } }}>
+                        <p>Sha256 checksum</p>
+                      </Hint>
+                    </CheckSumTitle>
+                    <ClipboardContainer>
+                      <Clipboard>{checksum}</Clipboard>
+                    </ClipboardContainer>
+                  </CheckSumContainer>
+                )}
+              </DownloadCard>
+            </DownloadCardWrapper>
+          </Col>
         );
       })}
   </Row>
