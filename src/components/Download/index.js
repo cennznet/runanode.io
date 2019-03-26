@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import MarkdownIt from 'markdown-it';
+import axios from 'axios';
 import styled from 'styled-components';
 import theme, { colors } from 'theme';
 import LinesBg from '-!svg-react-loader!images/linesBg.svg';
@@ -9,8 +9,6 @@ import { CENNZ_NODE_RELEASE_LINK } from 'constants';
 import Link from 'components/Link';
 
 import DownloadCards from './DownloadCards';
-
-const md = new MarkdownIt();
 
 const TitleContainer = styled.div``;
 
@@ -66,8 +64,6 @@ const DesktopOnly = styled.div`
 
 const VersionText = styled.div``;
 
-const Http = new XMLHttpRequest();
-
 const Download = ({ data: { github } }) => {
   if (!github) {
     return <div>There is no data</div>;
@@ -82,13 +78,12 @@ const Download = ({ data: { github } }) => {
     github.repository.releases.edges[0].node.releaseAssets.edges[0].node.release.description || '';
 
   const [downloadData, setDownloadData] = useState(null);
+  const [macDownloadLink, setMacDownloadLink] = useState(null);
+  const [appleCheckSum, setAppleCheckSum] = useState(null);
+  const [linuxDownloadLink, setLinuxDownloadLink] = useState(null);
+  const [linuxCheckSum, setLinuxCheckSum] = useState(null);
 
   useEffect(() => {
-    var macDownloadLink = null;
-    var appleCheckSum = null;
-    var linuxDownloadLink = null;
-    var linuxCheckSum = null;
-
     if (releaseAssets) {
       releaseAssets.forEach(releaseItem => {
         const { name } = (releaseItem && releaseItem.node) || '';
@@ -96,52 +91,53 @@ const Download = ({ data: { github } }) => {
         const { downloadUrl } = (releaseItem && releaseItem.node) || null;
 
         if (name.endsWith('mac.pkg') && downloadUrl) {
-          macDownloadLink = downloadUrl;
+          setMacDownloadLink(downloadUrl);
         }
 
         if (name.endsWith('mac.pkg.sha256') && url) {
-          Http.open('GET', url);
-          Http.send();
-          Http.onreadystatechange = e => {
-            console.log(Http.responseText);
-            const response = Http.responseText;
-            appleCheckSum = response && response.substring(response.indexOf('=') + 1);
-          };
+          axios.get(url).then(({ data }) => {
+            console.log('get', data);
+            console.log(data.indexOf('='));
+            console.log(data.substring(36));
+            const appleCheckSum =
+              (data && data.substring(data.indexOf('=') + 1)) ||
+              '4659e0278e6f1c9fa0740e02b73ee739da1c5cb2dfbe0aca6def1a32cd3cf334';
+
+            setAppleCheckSum(appleCheckSum);
+          });
         }
 
         if (name.endsWith('linux-amd64.deb') && downloadUrl) {
-          linuxDownloadLink = downloadUrl;
+          setLinuxDownloadLink(downloadUrl);
         }
 
         if (name.endsWith('linux-amd64.deb.sha256') && url) {
-          Http.open('GET', url);
-          Http.send();
-          Http.onreadystatechange = e => {
-            const response = Http.responseText;
-            linuxCheckSum = response && response.substring(response.indexOf('=') + 1);
-          };
+          axios.get(url).then(({ data }) => {
+            const linuxCheckSum =
+              (data && data.substring(data.indexOf('=') + 1)) ||
+              '92d2446ce6e38b2753b805001a2ee343e2326e68673e7010b0f13a1eae250682';
+
+            setLinuxCheckSum(linuxCheckSum);
+          });
         }
       });
     }
+  }, []);
 
-    const tempAppleChecksum =
-      appleCheckSum || '4659e0278e6f1c9fa0740e02b73ee739da1c5cb2dfbe0aca6def1a32cd3cf334';
-    const tempLinuxChecksum =
-      linuxCheckSum || '92d2446ce6e38b2753b805001a2ee343e2326e68673e7010b0f13a1eae250682';
-
+  useEffect(() => {
     const resortedDownloadData = [
-      { device: 'macOS 64 bit', url: macDownloadLink, checksum: tempAppleChecksum, logo: faApple },
+      { device: 'macOS 64 bit', url: macDownloadLink, checksum: appleCheckSum, logo: faApple },
       {
         device: 'Linux 64 bit',
         url: linuxDownloadLink,
-        checksum: tempLinuxChecksum,
+        checksum: linuxCheckSum,
         logo: faLinux,
       },
       { device: 'Windows', desc: 'Coming soon', logo: faWindows },
     ];
 
     setDownloadData(resortedDownloadData);
-  }, []);
+  }, [appleCheckSum, linuxCheckSum]);
 
   return (
     <React.Fragment>
