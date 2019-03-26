@@ -89,6 +89,7 @@ module.exports = {
           components: 'src/components',
           scss: 'src/scss',
           images: 'static/images',
+          constants: 'src/constants',
         },
         extensions: ['js'],
       },
