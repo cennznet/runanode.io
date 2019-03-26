@@ -65,7 +65,9 @@ const Version = styled.div`
   font-size: 16px;
 `;
 
-const DownloadLink = styled.a`
+const DownloadLink = styled.a.attrs({
+  target: '',
+})`
   color: transparent;
   pointer-events: none;
   cursor: default;
@@ -125,11 +127,7 @@ const DownloadCards = ({ downloadData, releaseVersion }) => (
                 <Device>{device}</Device>
                 {desc && <div>{desc}</div>}
                 {url && releaseVersion && <Version>Ver. {releaseVersion}</Version>}
-                {url && (
-                  <DownloadLink href={url} target="_blank">
-                    Download
-                  </DownloadLink>
-                )}
+                {url && <DownloadLink href={url}>Download</DownloadLink>}
                 {checksum && (
                   <CheckSumContainer>
                     <CheckSumTitle>
