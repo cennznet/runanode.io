@@ -6,7 +6,7 @@ const Link = styled.a.attrs({
   target: '_blank',
 })`
   width: 100%;
-  display: ${p => (p.inline ? 'inline-block' : 'block')};
+  display: ${p => (p.inline ? 'inline' : 'block')};
   cursor: pointer;
   text-decoration: ${p => (p.underline ? 'underline' : 'none')};
   color: ${colors.N0};
