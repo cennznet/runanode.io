@@ -4,7 +4,9 @@ import styled from 'styled-components';
 import theme, { colors } from 'theme';
 import LinesBg from '-!svg-react-loader!images/linesBg.svg';
 import { faApple, faLinux, faWindows } from '@fortawesome/free-brands-svg-icons';
-import { Container, Row, Col, media } from 'styled-bootstrap-grid';
+import { Row, Col, media } from 'styled-bootstrap-grid';
+import { CENNZ_NODE_RELEASE_LINK } from 'constants';
+import Link from 'components/Link';
 
 import DownloadCards from './DownloadCards';
 
@@ -148,7 +150,11 @@ const Download = ({ data: { github } }) => {
           <Title>LET&#39;S RUN A NODE!</Title>
           <Description>
             Download node application to your computer from below list. If you prefer to use CLI,
-            please download here.
+            please download{' '}
+            <Link href={CENNZ_NODE_RELEASE_LINK} inline margin="0" underline>
+              here
+            </Link>
+            .
           </Description>
           <VersionInfo>
             <VersionText>{`Current version ${releaseVersion}`}</VersionText>

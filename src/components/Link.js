@@ -6,9 +6,10 @@ const Link = styled.a.attrs({
   target: '_blank',
 })`
   width: 100%;
-  display: block;
+  display: ${p => (p.inline ? 'inline-block' : 'block')};
   cursor: pointer;
-  text-decoration: none;
+  text-decoration: ${p => (p.underline ? 'underline' : 'none')};
+  color: ${colors.N0};
   margin: ${p => p.margin || '0 1rem'};
 
   &:hover {

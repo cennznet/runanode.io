@@ -4,6 +4,7 @@ import { Container, Row, Col, media } from 'styled-bootstrap-grid';
 import { colors } from 'theme';
 import Link from 'components/Link';
 import CentralityLogo from '-!svg-react-loader!images/logo.svg';
+import { GITHUB_LINK, DEVELOPER_PORTAL, SUPPORT } from 'constants';
 
 const FooterContainer = styled.div`
   min-height: 5rem;
@@ -57,17 +58,17 @@ const Footer = () => (
           <FooterSection>
             <Row mdJustifyContent="end">
               <Col col xs="12" md="2">
-                <CustomLink>
+                <CustomLink href={GITHUB_LINK}>
                   <LinkText>Github</LinkText>
                 </CustomLink>
               </Col>
               <Col col xs="12" md="2">
-                <CustomLink>
+                <CustomLink href={SUPPORT}>
                   <LinkText>Support</LinkText>
                 </CustomLink>
               </Col>
               <Col col xs="12" md="4">
-                <CustomLink>
+                <CustomLink href={DEVELOPER_PORTAL}>
                   <LinkText>Developer portal</LinkText>
                 </CustomLink>
               </Col>
