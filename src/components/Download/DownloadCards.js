@@ -83,7 +83,7 @@ const DownloadLink = styled.a`
     text-decoration: none;
     border-radius: 3px;
     cursor: pointer;
-    pointer-events: default;
+    pointer-events: auto;
   
     &:hover {
       background: ${theme.listitemHighlightGradient};
