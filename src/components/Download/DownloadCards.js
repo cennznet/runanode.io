@@ -4,27 +4,36 @@ import styled from 'styled-components';
 import Hint from 'components/Hint';
 import Clipboard from 'components/Clipboard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-const DownloadCardList = styled.div`
-  display: flex;
-  margin: 2rem 0;
-  justify-content: space-around;
-`;
+import { Row, Col, media } from 'styled-bootstrap-grid';
 
 const DownloadCardWrapper = styled.div`
   height: 34rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 23rem;
-  border-radius: 1.2rem;
+  border-radius: 20px;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.24);
   background-color: ${colors.V900};
-  margin: 0 1rem;
+  min-width: 20rem;
+  max-width: 100%;
 
   &:hover {
     background: ${theme.listitemHighlightGradient};
   }
+
+  ${media.xs`
+    // width: 90%;
+    margin: 1.6rem 0;
+  `}
+
+  ${media.md`
+    //  width: 45%;
+     margin-bottom: 1.6rem;
+  `}
+
+  ${media.lg`
+    // width: 30%;
+  `}
 `;
 
 const DownloadCard = styled.div`
@@ -33,6 +42,8 @@ const DownloadCard = styled.div`
   border-radius: 1.2rem;
   background-color: ${colors.V900};
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.24);
+
+  justify-content: center;
 
   display: flex;
   flex-direction: column;
@@ -55,21 +66,29 @@ const Version = styled.div`
 `;
 
 const DownloadLink = styled.a`
-  display: block;
-  height: 2.5rem;
-  width: 8rem;
-  text-align: center;
-  line-height: 2.5rem;
-  background-color: ${colors.primary};
-  color: ${colors.N0};
-  font-weight: 500;
-  font-size: 16px;
-  text-decoration: none;
-  border-radius: 3px;
+  color: transparent;
+  pointer-events: none;
+  cursor: default;
 
-  &:hover {
-    background: ${theme.listitemHighlightGradient};
-  }
+  ${media.lg`
+    height: 2.5rem;
+    width: 8rem;
+    color: ${colors.N0};
+    display: block;
+    text-align: center;
+    line-height: 2.5rem;
+    background-color: ${colors.primary};
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 3px;
+    cursor: pointer;
+    pointer-events: default;
+  
+    &:hover {
+      background: ${theme.listitemHighlightGradient};
+    }
+  `}
 `;
 
 const CheckSumContainer = styled.div`
@@ -92,42 +111,44 @@ const ClipboardContainer = styled.div`
 `;
 
 const DownloadCards = ({ downloadData, releaseVersion }) => (
-  <DownloadCardList>
+  <Row justifyContent="center" smJustifyContent="center" mdJustifyContent="between">
     {downloadData &&
       downloadData.map(data => {
         const { device, url, checksum, logo, desc } = data;
         return (
-          <DownloadCardWrapper key={device}>
-            <DownloadCard>
-              <LogoContainer>
-                <FontAwesomeIcon icon={logo} size="5x" />
-              </LogoContainer>
-              <Device>{device}</Device>
-              {desc && <div>{desc}</div>}
-              {url && releaseVersion && <Version>Ver. {releaseVersion}</Version>}
-              {url && (
-                <DownloadLink href={url} target="_blank">
-                  Download
-                </DownloadLink>
-              )}
-              {checksum && (
-                <CheckSumContainer>
-                  <CheckSumTitle>
-                    Sha256 CheckSum
-                    <Hint tooltip={{ place: 'bottom', styles: { minWidth: '15rem' } }}>
-                      <p>Sha256 checksum</p>
-                    </Hint>
-                  </CheckSumTitle>
-                  <ClipboardContainer>
-                    <Clipboard>{checksum}</Clipboard>
-                  </ClipboardContainer>
-                </CheckSumContainer>
-              )}
-            </DownloadCard>
-          </DownloadCardWrapper>
+          <Col col xs={12} sm={12} md={5} lg={3} key={device}>
+            <DownloadCardWrapper key={device}>
+              <DownloadCard>
+                <LogoContainer>
+                  <FontAwesomeIcon icon={logo} size="5x" />
+                </LogoContainer>
+                <Device>{device}</Device>
+                {desc && <div>{desc}</div>}
+                {url && releaseVersion && <Version>Ver. {releaseVersion}</Version>}
+                {url && (
+                  <DownloadLink href={url} target="_blank">
+                    Download
+                  </DownloadLink>
+                )}
+                {checksum && (
+                  <CheckSumContainer>
+                    <CheckSumTitle>
+                      Sha256 CheckSum
+                      <Hint tooltip={{ place: 'bottom', styles: { minWidth: '15rem' } }}>
+                        <p>Sha256 checksum</p>
+                      </Hint>
+                    </CheckSumTitle>
+                    <ClipboardContainer>
+                      <Clipboard>{checksum}</Clipboard>
+                    </ClipboardContainer>
+                  </CheckSumContainer>
+                )}
+              </DownloadCard>
+            </DownloadCardWrapper>
+          </Col>
         );
       })}
-  </DownloadCardList>
+  </Row>
 );
 
 export default DownloadCards;

@@ -1,35 +1,55 @@
 import React from 'react';
 import styled from 'styled-components';
-import SVGInline from 'react-svg-inline';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAppleAlt } from '@fortawesome/free-solid-svg-icons';
-import { Container, Row, Col } from 'styled-bootstrap-grid';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { Container, Row, Col, media } from 'styled-bootstrap-grid';
 import Link from 'components/Link';
-import { colors } from 'theme';
 
 const HeaderConatiner = styled.div`
   height: 8rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  ${media.xs`
+    height: 6rem;
+  `}
 `;
 
 const HeaderSection = styled.div`
+  display: flex;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: ${p => (p.left ? 'flex-start' : 'flex-end')};
+
+  ${media.xs`
+    padding: 0 1rem; 
+  `};
+`;
+
+const Github = styled.div`
   display: felx;
 `;
 
+// TODO: rUN Logo
 const Header = () => (
-  <Container>
-    <HeaderConatiner>
-      <Row alignItems="center" justifyContent="between">
-        <HeaderSection>rUN Node logo</HeaderSection>
-        <HeaderSection>
-          <FontAwesomeIcon icon={faAppleAlt} />
-          <Link>Github</Link>
-        </HeaderSection>
+  <HeaderConatiner>
+    <Container>
+      <Row smJustifyContent="between">
+        <Col col sm="2" left>
+          <HeaderSection />
+        </Col>
+        <Col col sm="2">
+          <HeaderSection>
+            <Github>
+              <FontAwesomeIcon icon={faGithub} />
+              <Link>Github</Link>
+            </Github>
+          </HeaderSection>
+        </Col>
       </Row>
-    </HeaderConatiner>
-  </Container>
+    </Container>
+  </HeaderConatiner>
 );
 
 export default Header;
