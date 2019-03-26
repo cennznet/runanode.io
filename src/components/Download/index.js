@@ -93,8 +93,8 @@ const Download = ({ data: { github } }) => {
         const { url } = (releaseItem && releaseItem.node) || null;
         const { downloadUrl } = (releaseItem && releaseItem.node) || null;
 
-        if (name.endsWith('mac.pkg') && url) {
-          macDownloadLink = url;
+        if (name.endsWith('mac.pkg') && downloadUrl) {
+          macDownloadLink = downloadUrl;
         }
 
         if (name.endsWith('mac.pkg.sha256') && url) {
@@ -107,8 +107,8 @@ const Download = ({ data: { github } }) => {
           };
         }
 
-        if (name.endsWith('linux-amd64.deb') && url) {
-          linuxDownloadLink = url;
+        if (name.endsWith('linux-amd64.deb') && downloadUrl) {
+          linuxDownloadLink = downloadUrl;
         }
 
         if (name.endsWith('linux-amd64.deb.sha256') && url) {
