@@ -96,9 +96,6 @@ const Download = ({ data: { github } }) => {
 
         if (name.endsWith('mac.pkg.sha256') && url) {
           axios.get(url).then(({ data }) => {
-            console.log('get', data);
-            console.log(data.indexOf('='));
-            console.log(data.substring(36));
             const appleCheckSum =
               (data && data.substring(data.indexOf('=') + 1)) ||
               '4659e0278e6f1c9fa0740e02b73ee739da1c5cb2dfbe0aca6def1a32cd3cf334';
