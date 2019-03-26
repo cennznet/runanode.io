@@ -1,4 +1,4 @@
-export const GITHUB_LINK = 'https://github.com/cennznet/runanode.io';
+export const GITHUB_LINK = 'https://github.com/cennznet/rUN';
 
 export const DEVELOPER_PORTAL = 'https://centrality.ai/developers-2/';
 
