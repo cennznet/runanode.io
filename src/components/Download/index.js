@@ -94,15 +94,18 @@ const Download = ({ data: { github } }) => {
           setMacDownloadLink(downloadUrl);
         }
 
-        if (name.endsWith('mac.pkg.sha256') && url) {
-          // axios.get(url).then(({ data }) => {
-          //   const appleCheckSum =
-          //     (data && data.substring(data.indexOf('=') + 1)) ||
-          //     '4659e0278e6f1c9fa0740e02b73ee739da1c5cb2dfbe0aca6def1a32cd3cf334';
+        // https://github.com/axios/axios/issues/853#issuecomment-412922608
+        // https://github.com/Rob--W/cors-anywhere/
+        const corsProxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
-          //   setAppleCheckSum(appleCheckSum);
-          // });
-          setAppleCheckSum('4659e0278e6f1c9fa0740e02b73ee739da1c5cb2dfbe0aca6def1a32cd3cf334');
+        if (name.endsWith('mac.pkg.sha256') && url) {
+          axios.get(`${corsProxyUrl}`+url).then(({ data }) => {
+            const appleCheckSum =
+              (data && data.substring(data.indexOf('=') + 1)) ||
+              '';
+
+            setAppleCheckSum(appleCheckSum);
+          });
         }
 
         if (name.endsWith('linux-amd64.deb') && downloadUrl) {
@@ -110,14 +113,13 @@ const Download = ({ data: { github } }) => {
         }
 
         if (name.endsWith('linux-amd64.deb.sha256') && url) {
-          // axios.get(url).then(({ data }) => {
-          //   const linuxCheckSum =
-          //     (data && data.substring(data.indexOf('=') + 1)) ||
-          //     '92d2446ce6e38b2753b805001a2ee343e2326e68673e7010b0f13a1eae250682';
+          axios.get(`${'https://cors-anywhere.herokuapp.com/'}`+url).then(({ data }) => {
+            const linuxCheckSum =
+              (data && data.substring(data.indexOf('=') + 1)) ||
+              '';
 
-          //   setLinuxCheckSum(linuxCheckSum);
-          // });
-          setLinuxCheckSum('92d2446ce6e38b2753b805001a2ee343e2326e68673e7010b0f13a1eae250682');
+            setLinuxCheckSum(linuxCheckSum);
+          });
         }
       });
     }
