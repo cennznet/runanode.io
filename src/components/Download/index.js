@@ -113,7 +113,7 @@ const Download = ({ data: { github } }) => {
         }
 
         if (name.endsWith('linux-amd64.deb.sha256') && url) {
-          axios.get(`${'https://cors-anywhere.herokuapp.com/'}`+url).then(({ data }) => {
+          axios.get(`${corsProxyUrl}`+url).then(({ data }) => {
             const linuxCheckSum =
               (data && data.substring(data.indexOf('=') + 1)) ||
               '';
