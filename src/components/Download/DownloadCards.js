@@ -18,7 +18,7 @@ const DownloadCardWrapper = styled.div`
   max-width: 100%;
 
   &:hover {
-    background: ${theme.listitemHighlightGradient};
+    background: linear-gradient(180deg, #CB23F0 0%, #0A1874 100%);
   }
 
   ${media.xs`
@@ -86,7 +86,7 @@ const DownloadLink = styled.a.attrs({
     pointer-events: auto;
 
     &:hover {
-      background: ${theme.listitemHighlightGradient};
+      background: linear-gradient(90deg, #CB23F0 0%, #531996 100%);
     }
   `}
 `;
