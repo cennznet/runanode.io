@@ -12,7 +12,7 @@ const globalStyles = `
     font-size: ${theme.fontSize};
     font-family: ${theme.fontFamily};
     color: ${colors.N0};
-    background-color: ${colors.V800};
+    background: linear-gradient(180deg, #091966 0%, #040C40 100%);
   }
 `;
 

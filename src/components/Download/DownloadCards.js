@@ -18,21 +18,19 @@ const DownloadCardWrapper = styled.div`
   max-width: 100%;
 
   &:hover {
-    background: ${theme.listitemHighlightGradient};
+    background: linear-gradient(180deg, #CB23F0 0%, #0A1874 100%);
   }
 
   ${media.xs`
-    // width: 90%;
-    margin: 1.6rem 0;
+    margin-bottom: 1.6rem;
   `}
 
   ${media.md`
-    //  width: 45%;
-     margin-bottom: 1.6rem;
+     margin-bottom: 5rem;
   `}
 
   ${media.lg`
-    // width: 30%;
+    margin-bottom: 5rem;
   `}
 `;
 
@@ -86,9 +84,9 @@ const DownloadLink = styled.a.attrs({
     border-radius: 3px;
     cursor: pointer;
     pointer-events: auto;
-  
+
     &:hover {
-      background: ${theme.listitemHighlightGradient};
+      background: linear-gradient(90deg, #CB23F0 0%, #531996 100%);
     }
   `}
 `;
