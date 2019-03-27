@@ -95,13 +95,14 @@ const Download = ({ data: { github } }) => {
         }
 
         if (name.endsWith('mac.pkg.sha256') && url) {
-          axios.get(url).then(({ data }) => {
-            const appleCheckSum =
-              (data && data.substring(data.indexOf('=') + 1)) ||
-              '4659e0278e6f1c9fa0740e02b73ee739da1c5cb2dfbe0aca6def1a32cd3cf334';
+          // axios.get(url).then(({ data }) => {
+          //   const appleCheckSum =
+          //     (data && data.substring(data.indexOf('=') + 1)) ||
+          //     '4659e0278e6f1c9fa0740e02b73ee739da1c5cb2dfbe0aca6def1a32cd3cf334';
 
-            setAppleCheckSum(appleCheckSum);
-          });
+          //   setAppleCheckSum(appleCheckSum);
+          // });
+          setAppleCheckSum('4659e0278e6f1c9fa0740e02b73ee739da1c5cb2dfbe0aca6def1a32cd3cf334');
         }
 
         if (name.endsWith('linux-amd64.deb') && downloadUrl) {
@@ -109,13 +110,14 @@ const Download = ({ data: { github } }) => {
         }
 
         if (name.endsWith('linux-amd64.deb.sha256') && url) {
-          axios.get(url).then(({ data }) => {
-            const linuxCheckSum =
-              (data && data.substring(data.indexOf('=') + 1)) ||
-              '92d2446ce6e38b2753b805001a2ee343e2326e68673e7010b0f13a1eae250682';
+          // axios.get(url).then(({ data }) => {
+          //   const linuxCheckSum =
+          //     (data && data.substring(data.indexOf('=') + 1)) ||
+          //     '92d2446ce6e38b2753b805001a2ee343e2326e68673e7010b0f13a1eae250682';
 
-            setLinuxCheckSum(linuxCheckSum);
-          });
+          //   setLinuxCheckSum(linuxCheckSum);
+          // });
+          setLinuxCheckSum('92d2446ce6e38b2753b805001a2ee343e2326e68673e7010b0f13a1eae250682');
         }
       });
     }
