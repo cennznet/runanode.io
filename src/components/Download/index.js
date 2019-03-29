@@ -98,8 +98,8 @@ const Download = ({ data: { github } }) => {
         // https://github.com/Rob--W/cors-anywhere/
         const corsProxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
-        if (name.endsWith('mac.pkg.sha256') && url) {
-          axios.get(`${corsProxyUrl}`+url).then(({ data }) => {
+        if (name.endsWith('mac.pkg.sha256') && downloadUrl) {
+          axios.get(`${corsProxyUrl}`+downloadUrl).then(({ data }) => {
             const appleCheckSum =
               (data && data.substring(data.indexOf('=') + 1)) ||
               '';
@@ -112,8 +112,8 @@ const Download = ({ data: { github } }) => {
           setLinuxDownloadLink(downloadUrl);
         }
 
-        if (name.endsWith('linux-amd64.deb.sha256') && url) {
-          axios.get(`${corsProxyUrl}`+url).then(({ data }) => {
+        if (name.endsWith('linux-amd64.deb.sha256') && downloadUrl) {
+          axios.get(`${corsProxyUrl}`+downloadUrl).then(({ data }) => {
             const linuxCheckSum =
               (data && data.substring(data.indexOf('=') + 1)) ||
               '';
