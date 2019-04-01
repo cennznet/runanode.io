@@ -4,7 +4,6 @@ import { Container, Row, Col, media } from 'styled-bootstrap-grid';
 import { colors } from 'theme';
 import Link from 'components/Link';
 import CentralityLogo from '-!svg-react-loader!images/logo.svg';
-import { GITHUB_LINK, DEVELOPER_PORTAL, SUPPORT } from 'constants';
 
 const FooterContainer = styled.div`
   min-height: 5rem;
@@ -58,17 +57,17 @@ const Footer = () => (
           <FooterSection>
             <Row mdJustifyContent="end">
               <Col col xs="12" md="2">
-                <CustomLink href={GITHUB_LINK}>
+                <CustomLink href="https://github.com/cennznet/rUN">
                   <LinkText>Github</LinkText>
                 </CustomLink>
               </Col>
               <Col col xs="12" md="2">
-                <CustomLink href={SUPPORT}>
+                <CustomLink href="mailto:support@runanode.io">
                   <LinkText>Support</LinkText>
                 </CustomLink>
               </Col>
               <Col col xs="12" md="4">
-                <CustomLink href={DEVELOPER_PORTAL}>
+                <CustomLink href="https://centrality.ai/developers-2/">
                   <LinkText>Developer portal</LinkText>
                 </CustomLink>
               </Col>

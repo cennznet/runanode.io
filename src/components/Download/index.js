@@ -5,7 +5,6 @@ import theme, { colors } from 'theme';
 import LinesBg from '-!svg-react-loader!images/linesBg.svg';
 import { faApple, faLinux, faWindows } from '@fortawesome/free-brands-svg-icons';
 import { Row, Col, media } from 'styled-bootstrap-grid';
-import { CENNZ_NODE_RELEASE_LINK } from 'constants';
 import Link from 'components/Link';
 
 import DownloadCards from './DownloadCards';
@@ -98,11 +97,9 @@ const Download = ({ data: { github } }) => {
         // https://github.com/Rob--W/cors-anywhere/
         const corsProxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
-        if (name.endsWith('mac.pkg.sha256') && downloadUrl) {
-          axios.get(`${corsProxyUrl}`+downloadUrl).then(({ data }) => {
-            const appleCheckSum =
-              (data && data.substring(data.indexOf('=') + 1)) ||
-              '';
+        if (name.endsWith('mac.pkg.sha256') && url) {
+          axios.get(`${corsProxyUrl}` + url).then(({ data }) => {
+            const appleCheckSum = (data && data.substring(data.indexOf('=') + 1)) || '';
 
             setAppleCheckSum(appleCheckSum);
           });
@@ -112,11 +109,9 @@ const Download = ({ data: { github } }) => {
           setLinuxDownloadLink(downloadUrl);
         }
 
-        if (name.endsWith('linux-amd64.deb.sha256') && downloadUrl) {
-          axios.get(`${corsProxyUrl}`+downloadUrl).then(({ data }) => {
-            const linuxCheckSum =
-              (data && data.substring(data.indexOf('=') + 1)) ||
-              '';
+        if (name.endsWith('linux-amd64.deb.sha256') && url) {
+          axios.get(`${corsProxyUrl}` + url).then(({ data }) => {
+            const linuxCheckSum = (data && data.substring(data.indexOf('=') + 1)) || '';
 
             setLinuxCheckSum(linuxCheckSum);
           });
@@ -147,8 +142,13 @@ const Download = ({ data: { github } }) => {
           <Title>LET&#39;S RUN A NODE!</Title>
           <Description>
             Download node application to your computer from below list. If you prefer to use CLI,
-            please download{' '}
-            <Link href={CENNZ_NODE_RELEASE_LINK} inline margin="0" underline>
+            please download
+            <Link
+              href="https://github.com/cennznet/cennz-node-release/releases"
+              inline
+              margin="0"
+              underline
+            >
               here
             </Link>
             .
