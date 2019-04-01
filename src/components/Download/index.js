@@ -3,7 +3,9 @@ import axios from 'axios';
 import styled from 'styled-components';
 import theme, { colors } from 'theme';
 import LinesBg from '-!svg-react-loader!images/linesBg.svg';
-import { faApple, faLinux, faWindows } from '@fortawesome/free-brands-svg-icons';
+import faApple from '@fortawesome/free-brands-svg-icons/faApple';
+import faLinux from '@fortawesome/free-brands-svg-icons/faLinux';
+import faWindows from '@fortawesome/free-brands-svg-icons/faWindows';
 import { Row, Col, media } from 'styled-bootstrap-grid';
 import Link from 'components/Link';
 

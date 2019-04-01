@@ -2,7 +2,6 @@
 node_modules
 public
 
-# OSX
-.DS_Store
+*/.DS_Store
 
 .idea

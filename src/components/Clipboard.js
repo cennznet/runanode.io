@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import uuid from 'uuid/v4';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCopy } from '@fortawesome/free-solid-svg-icons';
+import faCopy from '@fortawesome/free-solid-svg-icons/faCopy';
 import Tooltip from 'components/Tooltip';
 import { colors } from 'theme';
 

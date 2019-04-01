@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import faGithub from '@fortawesome/free-brands-svg-icons/faGithub';
 import { Container, Row, Col, media } from 'styled-bootstrap-grid';
 import Link from 'components/Link';
 
@@ -23,7 +23,7 @@ const HeaderSection = styled.div`
   justify-content: ${p => (p.left ? 'flex-start' : 'flex-end')};
 
   ${media.xs`
-    padding: 0 1rem; 
+    padding: 0 1rem;
   `};
 `;
 
