@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Container, Row, Col, media } from 'styled-bootstrap-grid';
 import Link from 'components/Link';
-import { GITHUB_LINK } from 'constants';
 
 const HeaderConatiner = styled.div`
   height: 8rem;
@@ -44,7 +43,7 @@ const Header = () => (
           <HeaderSection>
             <Github>
               <FontAwesomeIcon icon={faGithub} />
-              <Link href={GITHUB_LINK}>Github</Link>
+              <Link href="https://github.com/cennznet/cennz-node-release/releases">Github</Link>
             </Github>
           </HeaderSection>
         </Col>
