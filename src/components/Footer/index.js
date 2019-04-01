@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Container, Row, Col, media } from 'styled-bootstrap-grid';
-import { colors } from 'theme';
+import { Container, Row, Col } from 'components';
+
+import { colors, media } from 'theme';
 import Link from 'components/Link';
 import CentralityLogo from '-!svg-react-loader!images/logo.svg';
 
@@ -12,18 +13,20 @@ const FooterContainer = styled.div`
   overflow: hidden;
   align-items: center;
 
-  ${media.xs`
+  ${media.smDown`
      padding: 0.5rem 0;
   `}
 `;
 
-const FooterSection = styled.div`
+const Links = styled.div`
   display: flex;
-  justify-content: ${p => (p.left ? 'flex-start' : 'flex-end')};
+  justify-content: flex-end;
+  text-align: right;
 
-  ${media.xs`
+  ${media.smDown`
+    text-align: left;
     margin-top: 0.5rem;
-    justify-content: flex-start;
+    flex-direction: column;
   `}
 `;
 
@@ -34,45 +37,45 @@ const LogoText = styled.div`
 `;
 
 const CustomLink = styled(Link)`
-  ${media.xs`
+  & + & {
+    margin-left: 1rem;
+  }
+
+  ${media.smDown`
     margin: 0.5rem 0;
+
+    & + & {
+    margin-left: 0;
+  }
 `}
 `;
 
-const LinkText = styled.div`
+const LinkText = styled.span`
   letter-spacing: 0.75px;
 `;
 
 const Footer = () => (
   <FooterContainer>
     <Container>
-      <Row smJustifyContent="between">
-        <Col col xs="12" sm="4">
-          <FooterSection left>
+      <Row>
+        <Col xs="12" sm="6">
+          <div style={{ display: 'flex' }}>
             <LogoText>Powered by</LogoText>
             <CentralityLogo />
-          </FooterSection>
+          </div>
         </Col>
-        <Col col xs="12" sm="6">
-          <FooterSection>
-            <Row mdJustifyContent="end">
-              <Col col xs="12" md="2">
-                <CustomLink href="https://github.com/cennznet/rUN">
-                  <LinkText>Github</LinkText>
-                </CustomLink>
-              </Col>
-              <Col col xs="12" md="2">
-                <CustomLink href="mailto:support@runanode.io">
-                  <LinkText>Support</LinkText>
-                </CustomLink>
-              </Col>
-              <Col col xs="12" md="4">
-                <CustomLink href="https://centrality.ai/developers-2/">
-                  <LinkText>Developer portal</LinkText>
-                </CustomLink>
-              </Col>
-            </Row>
-          </FooterSection>
+        <Col xs="12" sm="6">
+          <Links>
+            <CustomLink href="https://github.com/cennznet/rUN">
+              <LinkText>Github</LinkText>
+            </CustomLink>
+            <CustomLink href="mailto:support@runanode.io">
+              <LinkText>Support</LinkText>
+            </CustomLink>
+            <CustomLink href="https://centrality.ai/developers-2/">
+              <LinkText>Developer portal</LinkText>
+            </CustomLink>
+          </Links>
         </Col>
       </Row>
     </Container>

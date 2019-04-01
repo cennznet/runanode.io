@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import Helmet from 'react-helmet';
-import { Container } from 'styled-bootstrap-grid';
+import { Container } from 'components';
 import Download from 'components/Download';
 import SEO from 'components/SEO';
 import Layout from '../layouts/index';

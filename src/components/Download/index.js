@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import theme, { colors } from 'theme';
+import theme, { colors, media } from 'theme';
 import LinesBg from '-!svg-react-loader!images/linesBg.svg';
 import { faApple } from '@fortawesome/free-brands-svg-icons/faApple';
 import { faLinux } from '@fortawesome/free-brands-svg-icons/faLinux';
 import { faWindows } from '@fortawesome/free-brands-svg-icons/faWindows';
-import { Row, Col, media } from 'styled-bootstrap-grid';
+import { Row, Col } from 'components';
 import Link from 'components/Link';
 
 import DownloadCards from './DownloadCards';
@@ -41,7 +41,7 @@ const VersionInfo = styled.div`
   display: flex;
   justify-content: space-around;
 
-  ${media.xs`
+  ${media.smDown`
     height: 4rem;
     width: 16rem;
     flex-direction: column;
@@ -53,13 +53,10 @@ const DesktopOnly = styled.div`
   font-size: 16px;
   font-weight: 600;
   text-align: center;
+  color: transparent;
 
-  ${media.md`
+  ${media.mdDown`
     color: ${colors.N0};
-  `}
-
-  ${media.lg`
-    color: transparent;
   `}
 `;
 
@@ -140,11 +137,12 @@ const Download = ({ data: { github } }) => {
   return (
     <React.Fragment>
       <Row>
-        <Col col xs={10} md={6} mdOffset={3}>
+        <Col xs={12} md={{ size: 8, offset: 2 }}>
           <Title>LET&#39;S RUN A NODE!</Title>
           <Description>
-            Download node application to your computer from below list. If you prefer to use CLI,
-            please download
+            Download node application to your computer from below list.
+            <br />
+            If you prefer to use CLI, please download
             <Link
               href="https://github.com/cennznet/cennz-node-release/releases"
               inline

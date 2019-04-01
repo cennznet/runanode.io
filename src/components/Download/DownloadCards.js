@@ -1,10 +1,10 @@
 import React from 'react';
-import theme, { colors } from 'theme';
+import theme, { colors, media } from 'theme';
 import styled from 'styled-components';
 import Hint from 'components/Hint';
 import Clipboard from 'components/Clipboard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Row, Col, media } from 'styled-bootstrap-grid';
+import { Row, Col } from 'components';
 
 const DownloadCardWrapper = styled.div`
   height: 34rem;
@@ -14,23 +14,23 @@ const DownloadCardWrapper = styled.div`
   border-radius: 20px;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.24);
   background-color: ${colors.V900};
-  min-width: 20rem;
+  min-width: 12rem;
   max-width: 100%;
 
   &:hover {
-    background: linear-gradient(180deg, #CB23F0 0%, #0A1874 100%);
+    background: linear-gradient(180deg, #cb23f0 0%, #0a1874 100%);
   }
 
-  ${media.xs`
+  ${media.mdDown`
     margin-bottom: 1.6rem;
   `}
 
-  ${media.md`
-     margin-bottom: 5rem;
+  ${media.mdUp`
+    margin-bottom: 5rem;
   `}
 
-  ${media.lg`
-    margin-bottom: 5rem;
+  ${media.xlUp`
+    min-width: 20rem;
   `}
 `;
 
@@ -70,7 +70,7 @@ const DownloadLink = styled.a.attrs({
   pointer-events: none;
   cursor: default;
 
-  ${media.lg`
+  ${media.lgUp`
     height: 2.5rem;
     width: 8rem;
     color: ${colors.N0};
@@ -86,6 +86,8 @@ const DownloadLink = styled.a.attrs({
     pointer-events: auto;
 
     &:hover {
+      color: ${colors.N0};
+      text-decoration: none;
       background: linear-gradient(90deg, #CB23F0 0%, #531996 100%);
     }
   `}
@@ -111,12 +113,12 @@ const ClipboardContainer = styled.div`
 `;
 
 const DownloadCards = ({ downloadData, releaseVersion }) => (
-  <Row justifyContent="center" smJustifyContent="center" mdJustifyContent="between">
+  <Row>
     {downloadData &&
       downloadData.map(data => {
         const { device, url, checksum, logo, desc } = data;
         return (
-          <Col col xs={12} sm={12} md={5} lg={3} key={device}>
+          <Col xs={12} sm={12} md={6} lg={4} key={device}>
             <DownloadCardWrapper key={device}>
               <DownloadCard>
                 <LogoContainer>
