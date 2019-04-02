@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import uuid from 'uuid/v4';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
+import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons/faQuestionCircle';
 import Tooltip from 'components/Tooltip';
 import { colors } from 'theme';
 

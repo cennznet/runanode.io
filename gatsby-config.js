@@ -4,7 +4,7 @@ require('dotenv').config({
   path: `.env.${activeEnv}`,
 });
 
-console.log('process.env.NODE_ENV', process.env.NODE_ENV);
+const GA_TRACKING_ID = 'UA-132910586-2';
 
 module.exports = {
   siteMetadata: {
@@ -97,7 +97,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: process.env.GA_TRACKING_ID,
+        trackingId: GA_TRACKING_ID,
         cookieDomain: 'runanode.io',
       },
     },
@@ -107,6 +107,13 @@ module.exports = {
         host: 'https://runanode.io',
         sitemap: 'https://runanode.io/sitemap.xml',
         policy: [{ userAgent: '*', allow: '/' }],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-webpack-bundle-analyzer',
+      options: {
+        analyzerPort: 3000,
+        production: true,
       },
     },
   ],
