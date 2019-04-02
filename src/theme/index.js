@@ -1,4 +1,5 @@
 import * as colors from './colors';
+import media from './media';
 
 const theme = {
   borderRadius: '3px',
@@ -18,6 +19,6 @@ const theme = {
   },
 };
 
-export { colors };
+export { colors, media };
 
 export default theme;

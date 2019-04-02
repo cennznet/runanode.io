@@ -4,7 +4,7 @@ require('dotenv').config({
   path: `.env.${activeEnv}`,
 });
 
-console.log('process.env.NODE_ENV', process.env.NODE_ENV);
+const GA_TRACKING_ID = 'UA-132910586-2';
 
 module.exports = {
   siteMetadata: {
@@ -97,7 +97,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: process.env.GA_TRACKING_ID,
+        trackingId: GA_TRACKING_ID,
         cookieDomain: 'runanode.io',
       },
     },

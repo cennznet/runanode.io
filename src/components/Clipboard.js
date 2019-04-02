@@ -9,7 +9,7 @@ import { colors } from 'theme';
 const Wrapper = styled.div``;
 
 const Text = styled.textarea`
-  padding: 1rem 0;
+  margin-top: 0.5rem;
   overflow: hidden;
   background: transparent;
   border: 0;
@@ -17,9 +17,7 @@ const Text = styled.textarea`
   box-shadow: 0;
   resize: none;
   font-size: 14px;
-  line-height: 1.8rem;
-  font-size: 16px;
-  min-height: 6rem;
+  min-height: 5rem;
   width: 100%;
   text-align: center;
   color: ${colors.textMuted};
@@ -55,7 +53,7 @@ const Clipboard = ({ icon, children }) => {
 
   return (
     <Wrapper>
-      <Text ref={textRef} value={children} onChange={() => {}} />
+      <Text ref={textRef} value={children.trim()} onChange={() => {}} disabled />
       <IconWrapper>
         <Icon
           {...icon}
