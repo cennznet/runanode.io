@@ -69,7 +69,7 @@ const Footer = () => (
             <CustomLink href="https://github.com/cennznet/rUN">
               <LinkText>Github</LinkText>
             </CustomLink>
-            <CustomLink href="mailto:support@runanode.io">
+            <CustomLink href="http://help.runanode.io/support/home">
               <LinkText>Support</LinkText>
             </CustomLink>
             <CustomLink href="https://centrality.ai/developers-2/">
