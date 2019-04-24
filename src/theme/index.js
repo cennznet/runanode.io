@@ -7,8 +7,8 @@ const theme = {
   fontSizeSm: '12px',
   fontSize: '14px',
   fontSizeLg: '1rem',
-  fontFamily:
-    '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Fira Sans",Oxygen-Sans,Ubuntu,"Helvetica Neue",sans-serif',
+  // prettier-ignore
+  fontFamily: "-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,\"Fira Sans\",Oxygen-Sans,Ubuntu,\"Helvetica Neue\",sans-serif",
   listitemHighlightGradient:
     'linear-gradient(90deg, rgba(210,38,242,0.5) 30%, rgba(8,24,127,0.5) 100%)',
   zIndex: {

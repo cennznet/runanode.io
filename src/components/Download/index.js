@@ -88,7 +88,7 @@ const Download = ({ data: { github } }) => {
         const { url } = (releaseItem && releaseItem.node) || null;
         const { downloadUrl } = (releaseItem && releaseItem.node) || null;
 
-        if (name.endsWith('mac.pkg') && downloadUrl) {
+        if (name.endsWith('mac.dmg') && downloadUrl) {
           setMacDownloadLink(downloadUrl);
         }
 
@@ -96,7 +96,7 @@ const Download = ({ data: { github } }) => {
         // https://github.com/Rob--W/cors-anywhere/
         const corsProxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
-        if (name.endsWith('mac.pkg.sha256') && downloadUrl) {
+        if (name.endsWith('mac.dmg.sha256') && downloadUrl) {
           axios.get(`${corsProxyUrl}` + downloadUrl).then(({ data }) => {
             const appleCheckSum = (data && data.substring(data.indexOf('=') + 1)) || '';
 
@@ -104,11 +104,11 @@ const Download = ({ data: { github } }) => {
           });
         }
 
-        if (name.endsWith('linux-amd64.deb') && downloadUrl) {
+        if (name.endsWith('linux-x86_64.AppImage') && downloadUrl) {
           setLinuxDownloadLink(downloadUrl);
         }
 
-        if (name.endsWith('linux-amd64.deb.sha256') && downloadUrl) {
+        if (name.endsWith('linux-x86_64.AppImage.sha256') && downloadUrl) {
           axios.get(`${corsProxyUrl}` + downloadUrl).then(({ data }) => {
             const linuxCheckSum = (data && data.substring(data.indexOf('=') + 1)) || '';
 

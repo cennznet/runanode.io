@@ -110,11 +110,22 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-webpack-bundle-analyzer',
+      resolve: `gatsby-plugin-google-tagmanager`,
       options: {
-        analyzerPort: 3000,
-        production: true,
+        id: 'GTM-MGKPFQL',
+        includeInDevelopment: false,
+
+        // gtmAuth: 'YOUR_GOOGLE_TAGMANAGER_ENVIROMENT_AUTH_STRING',
+        // gtmPreview: 'YOUR_GOOGLE_TAGMANAGER_ENVIROMENT_PREVIEW_NAME',
+        // dataLayerName: 'YOUR_DATA_LAYER_NAME',
       },
     },
+    // {
+    //   resolve: 'gatsby-plugin-webpack-bundle-analyzer',
+    //   options: {
+    //     analyzerPort: 3000,
+    //     production: true,
+    //   },
+    // },
   ],
 };
