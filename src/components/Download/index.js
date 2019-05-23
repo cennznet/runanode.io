@@ -76,12 +76,13 @@ const Download = ({ data: { github } }) => {
     github.repository.releases.edges[0].node.releaseAssets.edges[0].node.release.description || '';
 
   const [downloadData, setDownloadData] = useState(null);
-  const [macDownloadLink, setMacDownloadLink] = useState(null);
   const [appleCheckSum, setAppleCheckSum] = useState(null);
-  const [linuxDownloadLink, setLinuxDownloadLink] = useState(null);
   const [linuxCheckSum, setLinuxCheckSum] = useState(null);
 
   useEffect(() => {
+    let macDownloadLink = '';
+    let linuxDownloadLink = '';
+
     if (releaseAssets) {
       releaseAssets.forEach(releaseItem => {
         const { name } = (releaseItem && releaseItem.node) || '';
@@ -89,7 +90,7 @@ const Download = ({ data: { github } }) => {
         const { downloadUrl } = (releaseItem && releaseItem.node) || null;
 
         if (name.endsWith('mac.dmg') && downloadUrl) {
-          setMacDownloadLink(downloadUrl);
+          macDownloadLink = downloadUrl;
         }
 
         // https://github.com/axios/axios/issues/853#issuecomment-412922608
@@ -105,7 +106,7 @@ const Download = ({ data: { github } }) => {
         }
 
         if (name.endsWith('linux-x86_64.AppImage') && downloadUrl) {
-          setLinuxDownloadLink(downloadUrl);
+          linuxDownloadLink = downloadUrl;
         }
 
         if (name.endsWith('linux-x86_64.AppImage.sha256') && downloadUrl) {
@@ -117,9 +118,7 @@ const Download = ({ data: { github } }) => {
         }
       });
     }
-  }, []);
 
-  useEffect(() => {
     const resortedDownloadData = [
       { device: 'macOS 64 bit', url: macDownloadLink, checksum: appleCheckSum, logo: faApple },
       {
@@ -132,7 +131,7 @@ const Download = ({ data: { github } }) => {
     ];
 
     setDownloadData(resortedDownloadData);
-  }, [appleCheckSum, linuxCheckSum]);
+  }, []);
 
   return (
     <React.Fragment>
