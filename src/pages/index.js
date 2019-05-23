@@ -33,7 +33,7 @@ export const query = graphql`
             node {
               name
               publishedAt
-              releaseAssets(last: 20) {
+              releaseAssets(last: 30) {
                 edges {
                   node {
                     id
