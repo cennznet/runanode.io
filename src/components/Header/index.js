@@ -41,7 +41,7 @@ const Header = () => (
           <FontAwesomeIcon icon={faGithub} />
           <Link
             margin="0 0 0 0.5rem"
-            href="https://github.com/cennznet/cennz-node-release/releases"
+            href="https://github.com/cennznet/runanode"
           >
             Github
           </Link>
