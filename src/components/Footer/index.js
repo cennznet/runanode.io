@@ -66,13 +66,13 @@ const Footer = () => (
         </Col>
         <Col xs="12" sm="6">
           <Links>
-            <CustomLink href="https://github.com/cennznet/rUN">
+            <CustomLink href="https://github.com/cennznet/runanode">
               <LinkText>Github</LinkText>
             </CustomLink>
             <CustomLink href="http://help.runanode.io/support/home">
               <LinkText>Support</LinkText>
             </CustomLink>
-            <CustomLink href="https://centrality.ai/developers-2/">
+            <CustomLink href="https://portal.centrality.ai/">
               <LinkText>Developer portal</LinkText>
             </CustomLink>
           </Links>
