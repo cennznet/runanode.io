@@ -143,7 +143,7 @@ const Download = ({ data: { github } }) => {
             <br />
             If you prefer to use CLI, please download
             <Link
-              href="https://github.com/cennznet/cennz-node-release/releases"
+              href="https://github.com/cennznet/cennznet-node-bin/releases"
               inline
               margin="0 0 0 0.5rem"
               underline
