@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import theme, { colors, media } from 'theme';
-import LinesBg from '-!svg-react-loader!images/linesBg.svg';
 import { faApple } from '@fortawesome/free-brands-svg-icons/faApple';
 import { faLinux } from '@fortawesome/free-brands-svg-icons/faLinux';
 import { faWindows } from '@fortawesome/free-brands-svg-icons/faWindows';
@@ -10,8 +9,6 @@ import { Row, Col } from 'components';
 import Link from 'components/Link';
 
 import DownloadCards from './DownloadCards';
-
-const TitleContainer = styled.div``;
 
 const Title = styled.div`
   font-size: 32px;
@@ -82,7 +79,7 @@ const Download = ({ data: { github } }) => {
   useEffect(() => {
     let macDownloadLink = '';
     let linuxDownloadLink = '';
-    let winDownloadLink = '';
+    let windowsDownloadLink = '';
 
     if (releaseAssets) {
       releaseAssets.forEach(releaseItem => {
@@ -118,8 +115,8 @@ const Download = ({ data: { github } }) => {
           });
         }
 
-        if (name.endsWith('win.exe') && downloadUrl) {
-          winDownloadLink = downloadUrl;
+        if (name.endsWith('.exe') && downloadUrl) {
+          windowsDownloadLink = downloadUrl;
         }
       });
     }
@@ -132,7 +129,7 @@ const Download = ({ data: { github } }) => {
         checksum: linuxCheckSum,
         logo: faLinux,
       },
-      { device: 'Windows', url: winDownloadLink, logo: faWindows },
+      { device: 'Windows', url: windowsDownloadLink, logo: faWindows },
     ];
 
     setDownloadData(resortedDownloadData);
