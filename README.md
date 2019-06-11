@@ -11,7 +11,7 @@
 
 ## Development
 
-`yarn dev`
+`GITHUB_TOKEN=[your_github_token] yarn dev`
 
 ## Deployment
 
