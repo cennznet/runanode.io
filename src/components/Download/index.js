@@ -82,6 +82,7 @@ const Download = ({ data: { github } }) => {
   useEffect(() => {
     let macDownloadLink = '';
     let linuxDownloadLink = '';
+    let winDownloadLink = '';
 
     if (releaseAssets) {
       releaseAssets.forEach(releaseItem => {
@@ -116,6 +117,10 @@ const Download = ({ data: { github } }) => {
             setLinuxCheckSum(linuxCheckSum);
           });
         }
+
+        if (name.endsWith('win.exe') && downloadUrl) {
+          winDownloadLink = downloadUrl;
+        }
       });
     }
 
@@ -127,7 +132,7 @@ const Download = ({ data: { github } }) => {
         checksum: linuxCheckSum,
         logo: faLinux,
       },
-      { device: 'Windows', desc: 'Coming soon', logo: faWindows },
+      { device: 'Windows', url: winDownloadLink, logo: faWindows },
     ];
 
     setDownloadData(resortedDownloadData);

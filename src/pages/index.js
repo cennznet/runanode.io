@@ -27,7 +27,7 @@ const Home = props => {
 export const query = graphql`
   query {
     github {
-      repository(owner: "cennznet", name: "cennz-node-release") {
+      repository(owner: "cennznet", name: "runanode") {
         releases(last: 1) {
           edges {
             node {
