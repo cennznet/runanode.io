@@ -1,11 +1,22 @@
-# cennz-node-landing-page
+<h1 align="center">
+  runanode.io
+</h1>
 
-## Get started
+<h3 align="center">
+  rUNanode download website
+</h3>
+<p align="center">
+  rUNanode repository - https://github.com/cennznet/runanode
+</p>
 
-### Development
+## Development
 
 `yarn dev`
 
-### Deploy
+## Deployment
 
-`GA_TRACKING_ID=xxxx GITHUB_TOKEN=xxxx yarn deploy`
+- `GITHUB_TOKEN=[your_github_token] yarn deploy`;
+- Go to [runanode.io repository settings page][repo_settings];
+- Fill in `runanode.io` in `custom domain` field;
+
+[repo_settings]: https://github.com/cennznet/runanode.io/settings
